@@ -1,0 +1,55 @@
+{
+  "name": "biblia-do-instrumentista",
+  "version": "1.0.0",
+  "description": "Bíblia do Instrumentista — Afinador, Harpa Cristã Cifrada e Bíblia Sagrada ACF",
+  "main": "main.js",
+  "author": "Bíblia do Instrumentista",
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_OPTIONS=\"--experimental-require-module\" electron .",
+    "build:appimage": "NODE_OPTIONS=\"--experimental-require-module\" electron-builder --linux appimage",
+    "build:deb": "NODE_OPTIONS=\"--experimental-require-module\" electron-builder --linux deb",
+    "build:linux": "NODE_OPTIONS=\"--experimental-require-module\" electron-builder --linux appimage deb",
+    "build:android": "rm -rf www && mkdir -p www && cp -r index.html manifest.json css js data icons assets www/ && npx cap copy android && npx cap sync android",
+    "open:android": "npx cap open android"
+  },
+  "build": {
+    "appId": "com.bibliadoinstrumentista.app",
+    "productName": "Bíblia do Instrumentista",
+    "desktopName": "biblia-do-instrumentista",
+    "copyright": "Copyright © 2026 Bíblia do Instrumentista",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "index.html",
+      "main.js",
+      "manifest.json",
+      "css/**/*",
+      "js/**/*",
+      "data/**/*",
+      "icons/**/*",
+      "assets/**/*",
+      "!node_modules/**/*",
+      "!dist/**/*",
+      "!android/**/*"
+    ],
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "icon": "icons/icon-512.png",
+      "category": "AudioVideo",
+      "description": "Aplicativo para instrumentistas e ministros de louvor",
+      "synopsis": "Afinação, Harpa Cristã Cifrada e Bíblia Sagrada ACF"
+    }
+  },
+  "devDependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/cli": "^7.6.9",
+    "@capacitor/core": "^8.5.2",
+    "electron": "^41.7.1",
+    "electron-builder": "^26.15.3"
+  }
+}

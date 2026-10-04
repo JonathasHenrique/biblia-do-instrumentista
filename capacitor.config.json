@@ -1,0 +1,12 @@
+{
+  "appId": "com.bibliadoinstrumentista.app",
+  "appName": "Bíblia do Instrumentista",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": true,
+    "webContentsDebuggingEnabled": false
+  }
+}

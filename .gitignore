@@ -1,0 +1,27 @@
+# Dependências e Builds locais
+node_modules/
+dist/
+www/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Android build outputs e cache
+android/app/build/
+android/build/
+android/.gradle/
+android/captures/
+android/local.properties
+.gradle/
+build/
+
+# IDE e Sistema Operacional
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

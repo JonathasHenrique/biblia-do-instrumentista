@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bíblia do Instrumentista — Afinador, Harpa Cristã & Bíblia ACF</title>
+  <meta name="description" content="O aplicativo definitivo para instrumentistas e ministros de louvor: afinador profissional de violão e contrabaixo, Harpa Cristã cifrada com transposição de tom e Bíblia Sagrada ACF.">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#080b12">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Barra Superior / Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="logo-group">
+        <div class="logo-icon">
+          <!-- Ícone de Harpa / Lira Sagrada -->
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <h1>BÍBLIA DO INSTRUMENTISTA</h1>
+          <span>Afinação • Louvor • Palavra</span>
+        </div>
+      </div>
+
+      <!-- Navegação por Abas -->
+      <nav class="nav-tabs" aria-label="Navegação Principal">
+        <button class="tab-btn active" data-tab="tuner" id="tab-tuner-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM12 17l-5-5h3V9h4v3h3l-5 5z"/>
+          </svg>
+          Afinador
+        </button>
+        <button class="tab-btn gold-tab" data-tab="harpa" id="tab-harpa-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+          </svg>
+          Harpa Cristã
+        </button>
+        <button class="tab-btn" data-tab="biblia" id="tab-biblia-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+          </svg>
+          Bíblia ACF
+        </button>
+        <button class="tab-btn" data-tab="metronomo" id="tab-metronomo-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/>
+          </svg>
+          Metrônomo
+        </button>
+      </nav>
+
+      <!-- Alternador de Tema: Modo Escuro / Modo Claro -->
+      <div class="header-actions">
+        <button id="theme-toggle-btn" class="theme-toggle-btn" title="Alternar entre Modo Escuro e Modo Claro" aria-label="Alternar Tema">
+          <span id="theme-toggle-icon">☀️</span>
+          <span id="theme-toggle-label">Claro</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Container Principal -->
+  <main class="main-wrapper">
+
+    <!-- ====================================================================
+         ABA 1: AFINADOR (VIOLÃO & CONTRABAIXO)
+         ==================================================================== -->
+    <section id="pane-tuner" class="tab-pane active" aria-labelledby="tab-tuner-btn">
+      <div class="tuner-card">
+        
+        <!-- Barra de Configurações do Afinador -->
+        <div class="tuner-controls-bar">
+          <div class="selector-group">
+            <label for="instrument-select">Instrumento:</label>
+            <select id="instrument-select" class="custom-select">
+              <option value="violao">🎸 Violão (6 Cordas)</option>
+              <option value="baixo4">🎻 Contrabaixo (4 Cordas)</option>
+              <option value="baixo5">🎻 Contrabaixo (5 Cordas)</option>
+              <option value="cromatico">🎛️ Modo Cromático (Geral)</option>
+            </select>
+          </div>
+
+          <div class="selector-group">
+            <label for="tuning-select">Afinação:</label>
+            <select id="tuning-select" class="custom-select">
+              <!-- Preenchido dinamicamente via JS -->
+            </select>
+          </div>
+
+          <div class="selector-group">
+            <label for="a4-select">Calibração A4:</label>
+            <select id="a4-select" class="custom-select">
+              <option value="440">440 Hz (Padrão Internacional)</option>
+              <option value="432">432 Hz (Afinação Áurea / Harmônica)</option>
+              <option value="442">442 Hz (Orquestral / Brilhante)</option>
+            </select>
+          </div>
+
+          <button id="mic-toggle" class="mic-toggle-btn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+              <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+            </svg>
+            Ativar Afinador
+          </button>
+        </div>
+
+        <!-- Mostrador de Agulha (Gauge) em SVG -->
+        <div class="gauge-container">
+          <svg class="gauge-svg" viewBox="0 0 440 240">
+            <!-- Arco de Fundo -->
+            <path class="gauge-arc-bg" d="M 60 210 A 160 160 0 0 1 380 210" />
+            <!-- Zona Central de Afinação Perfeita (±5 cents) -->
+            <path class="gauge-center-zone" d="M 210 50 A 160 160 0 0 1 230 50" />
+            
+            <!-- Marcadores de escala -->
+            <text x="70" y="215" fill="#64748b" font-size="12" font-family="monospace">-50</text>
+            <text x="135" y="115" fill="#64748b" font-size="12" font-family="monospace">-25</text>
+            <text x="215" y="42" fill="#10b981" font-size="14" font-weight="bold" font-family="monospace">0</text>
+            <text x="290" y="115" fill="#64748b" font-size="12" font-family="monospace">+25</text>
+            <text x="350" y="215" fill="#64748b" font-size="12" font-family="monospace">+50</text>
+
+            <!-- Agulha -->
+            <g id="gauge-needle" class="gauge-needle">
+              <line x1="220" y1="210" x2="220" y2="55" />
+              <circle cx="220" cy="210" r="10" fill="#f59e0b" />
+            </g>
+          </svg>
+
+          <!-- Leitura da Nota Central -->
+          <div class="note-display">
+            <div class="note-primary">
+              <span id="detected-note">--</span><span id="detected-octave" class="note-octave"></span>
+            </div>
+            <div id="detected-cents" class="cents-readout">-- cents</div>
+            <div id="detected-hz" class="hz-readout">Clique em "Ativar Afinador" para começar</div>
+          </div>
+        </div>
+
+        <!-- Cordas do Instrumento (Tarraxas Interativas para Diapasão de Ouvido) -->
+        <div style="margin-top: 1.5rem; text-align: center;">
+          <span style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;">
+            Cordas do Instrumento (Toque para ouvir a nota de referência)
+          </span>
+        </div>
+        <div id="strings-container" class="strings-container">
+          <!-- Gerado dinamicamente pelo JavaScript -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ABA 2: HARPA CRISTÃ CIFRADA
+         ==================================================================== -->
+    <section id="pane-harpa" class="tab-pane" aria-labelledby="tab-harpa-btn">
+      <div class="harpa-layout">
+        
+        <!-- Barra Lateral de Busca de Hinos -->
+        <aside class="harpa-sidebar">
+          <div class="search-input-box">
+            <svg class="search-icon" viewBox="0 0 24 24">
+              <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+            <input type="text" id="hymn-search" placeholder="Buscar por número, título ou letra...">
+          </div>
+
+          <div id="hymn-list" class="hymn-list">
+            <!-- Lista de Hinos gerada dinamicamente -->
+          </div>
+        </aside>
+
+        <!-- Visualizador de Hino e Cifra -->
+        <main class="hymn-viewer">
+          <!-- Barra 1: Controles de Exibição, Partitura e Ferramentas -->
+          <div class="viewer-toolbar">
+            <!-- Alternador de Cifras (Modo Cifrado vs Modo Só Letra / Cantar) -->
+            <div class="tool-group">
+              <button id="btn-toggle-chords" class="tool-btn active" title="Alternar entre ver cifras ou apenas a letra do hino">
+                <span id="toggle-chords-icon">🎸</span>
+                <span id="toggle-chords-label">Cifras: Ativas</span>
+              </button>
+            </div>
+
+            <!-- Rolagem Automática & Fonte -->
+            <div class="tool-group">
+              <button id="btn-autoscroll" class="tool-btn">▶ Rolagem Automática</button>
+              <button id="btn-font-minus" class="tool-btn" title="Diminuir texto">A-</button>
+              <button id="btn-font-plus" class="tool-btn" title="Aumentar texto">A+</button>
+              <button id="btn-open-chords" class="tool-btn" style="border-color:var(--gold-primary); color:var(--gold-light);">🎸 Acordes</button>
+            </div>
+          </div>
+
+          <!-- Barra 2: Seletor Inteligente de Tons Direto -->
+          <div class="tone-selector-strip" style="background: rgba(18, 24, 38, 0.8); padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 0.5rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="font-size: 0.8rem; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Mudar Tom:</span>
+                <div id="tone-buttons-container" style="display: flex; gap: 0.3rem; flex-wrap: wrap;">
+                  <!-- Botões de Tom C, D, E, F, G, A, B gerados dinamicamente via JS -->
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 0.4rem;">
+                <button id="btn-transpose-down" class="tool-btn" style="padding: 0.3rem 0.6rem;" title="Descer 1 semitom">-½</button>
+                <span id="current-tone-badge" class="tone-badge" style="padding: 0.3rem 0.6rem; font-size: 0.85rem;">Tom: G</span>
+                <button id="btn-transpose-up" class="tool-btn" style="padding: 0.3rem 0.6rem;" title="Subir 1 semitom">+½</button>
+                <button id="btn-transpose-reset" class="tool-btn" style="padding: 0.3rem 0.6rem;" title="Tom Original">Original</button>
+              </div>
+            </div>
+
+            <!-- Painel do Campo Harmônico & Dicas de Instrumentista -->
+            <div id="harmonic-field-display" style="font-size: 0.8rem; color: #cbd5e1; background: rgba(0,0,0,0.25); padding: 0.4rem 0.75rem; border-radius: 8px; border-left: 3px solid var(--gold-primary);">
+              <!-- Preenchido dinamicamente via JS -->
+            </div>
+          </div>
+
+          <!-- Conteúdo Cifrado e Letra do Hino -->
+          <div id="chord-sheet-content" class="chord-sheet-content">
+            <div id="lyrics-chords-body"></div>
+          </div>
+        </main>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ABA 3: BÍBLIA SAGRADA ACF (COMPLETA - 66 LIVROS)
+         ==================================================================== -->
+    <section id="pane-biblia" class="tab-pane" aria-labelledby="tab-biblia-btn">
+      <div class="bible-container">
+        
+        <div class="bible-nav-card">
+          <div class="bible-selectors">
+            <div class="selector-group">
+              <label for="bible-version-select">Tradução:</label>
+              <select id="bible-version-select" class="custom-select">
+                <option value="acf">ACF — Almeida Corrigida Fiel</option>
+                <option value="arc">ARC — Almeida Revista e Corrigida (Clássica)</option>
+                <option value="tb">TB — Tradução Brasileira (1917)</option>
+              </select>
+            </div>
+
+            <div class="selector-group">
+              <label for="bible-book-select">Livro:</label>
+              <select id="bible-book-select" class="custom-select">
+                <!-- Preenchido dinamicamente com os 66 livros da Bíblia -->
+              </select>
+            </div>
+
+            <div class="selector-group">
+              <label for="bible-chapter-select">Capítulo:</label>
+              <select id="bible-chapter-select" class="custom-select">
+                <!-- Capítulos gerados dinamicamente -->
+              </select>
+            </div>
+          </div>
+
+          <div style="font-size: 0.85rem; color: #94a3b8;">
+            Tradução Ativa: <strong id="bible-active-version-badge" style="color: var(--gold-light);">Almeida Corrigida Fiel (ACF)</strong>
+          </div>
+
+          <!-- Busca Bíblica Global -->
+          <div style="width: 100%; margin-top: 0.75rem; position: relative;">
+            <input type="text" id="bible-search-input" placeholder="🔍 Buscar qualquer palavra na Bíblia (ex: 'louvor', 'harpa', 'cântico', 'pastor')..." style="width: 100%; background: var(--surface-2); border: 1px solid var(--border-subtle); padding: 0.65rem 1rem 0.65rem 1rem; border-radius: 12px; color: #fff; font-family: var(--font-main); font-size: 0.9rem; outline: none;">
+          </div>
+          <div id="bible-search-results" style="display:none; width: 100%; margin-top: 0.75rem; max-height: 260px; overflow-y: auto; background: var(--surface-2); border: 1px solid var(--border-active); border-radius: 12px; padding: 0.75rem;"></div>
+        </div>
+
+        <!-- Leitor Bíblico -->
+        <article class="bible-reader-card">
+          <h2 id="bible-chapter-title" class="bible-chapter-title">Salmos 150</h2>
+          <p id="bible-chapter-subtitle" class="bible-chapter-subtitle">O Grande Hino de Louvor com Instrumentos • Almeida Corrigida Fiel (ACF)</p>
+          
+          <div id="bible-text-content" class="bible-text-content">
+            <!-- Versículos renderizados via JS -->
+          </div>
+
+          <!-- Devocional do Músico / Instrumentista -->
+          <div id="devotional-container">
+            <!-- Injetado via JS -->
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ABA 4: METRÔNOMO DIGITAL
+         ==================================================================== -->
+    <section id="pane-metronomo" class="tab-pane" aria-labelledby="tab-metronomo-btn">
+      <div class="metronome-card">
+        
+        <div class="metronome-bpm-display" id="bpm-display">100</div>
+        <div class="bpm-label">Batidas por Minuto (BPM)</div>
+        <div class="tempo-name" id="tempo-name">Andante (Hinos de Oração)</div>
+
+        <!-- Visualizador de Batidas (Dots) -->
+        <div id="beat-dots-container" class="beat-dots">
+          <!-- Dots injetados via JS -->
+        </div>
+
+        <!-- Slider de BPM -->
+        <div class="bpm-slider-container">
+          <input type="range" id="bpm-slider" class="bpm-slider" min="30" max="260" value="100">
+        </div>
+
+        <!-- Botões de Ajuste Fino -->
+        <div class="stepper-group">
+          <button class="step-btn" data-step="-5">-5</button>
+          <button class="step-btn" data-step="-1">-1</button>
+          <button class="step-btn" data-step="1">+1</button>
+          <button class="step-btn" data-step="5">+5</button>
+        </div>
+
+        <!-- Seletor de Compasso -->
+        <div class="selector-group" style="margin-bottom: 2rem;">
+          <label for="beats-select">Fórmula de Compasso:</label>
+          <select id="beats-select" class="custom-select">
+            <option value="4">4/4 (Quaternário - Mais comum)</option>
+            <option value="3">3/4 (Ternário - Valsas / Hinos solenes)</option>
+            <option value="2">2/4 (Binário - Marchas)</option>
+            <option value="6">6/8 (Sextenário - Toadas e baladas)</option>
+          </select>
+        </div>
+
+        <!-- Controles Principais: Play & Tap Tempo -->
+        <div class="metro-main-controls">
+          <button id="metro-play-btn" class="play-metro-btn" aria-label="Iniciar Metrônomo">
+            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </button>
+          <button id="metro-tap-btn" class="tap-tempo-btn">
+            Tocar no Ritmo (Tap Tempo)
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal Dicionário de Acordes -->
+  <div id="chords-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">📚 Dicionário de Acordes & Arpejos</h3>
+        <button id="close-chords-modal" class="close-modal-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section-label">Selecione o Acorde:</div>
+        <div id="chord-buttons-list" class="chord-buttons-grid">
+          <!-- Botões de acordes injetados via JS -->
+        </div>
+        <div class="chord-diagrams-row">
+          <div id="guitar-chord-diagram-container" style="text-align: center;">
+            <div class="chord-diag-title">🎸 Violão (Digitação no Braço)</div>
+          </div>
+          <div id="bass-chord-info-container" class="bass-chord-card">
+            <div class="bass-diag-title">🎻 Contrabaixo (Notas & Arpejo)</div>
+            <div id="bass-chord-details" class="bass-details-content"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer class="app-footer">
+    <p>Bíblia do Instrumentista • Feito para músicos e ministros de louvor • <em>"Cantai-lhe um cântico novo; tocai bem e com júbilo." (Salmos 33:3)</em></p>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

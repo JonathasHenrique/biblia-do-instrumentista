@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Bíblia do Instrumentista
+GenericName=Afinador e Harpa Cifrada
+Comment=Aplicativo completo de Afinação, Harpa Cristã Cifrada e Bíblia Sagrada ACF
+Exec=/home/jonathas/.gemini/antigravity-ide/scratch/biblia-do-instrumentista/dist/linux-unpacked/biblia-do-instrumentista %U
+Icon=/home/jonathas/.gemini/antigravity-ide/scratch/biblia-do-instrumentista/icons/icon-512.png
+Terminal=false
+Type=Application
+Categories=AudioVideo;Audio;Music;Education;
+StartupWMClass=biblia-do-instrumentista
+Keywords=afinador;harpa;biblia;cifra;musica;louvor;violao;baixo;

@@ -1,0 +1,101 @@
+name: Compilar Bíblia do Instrumentista (Linux & Android)
+
+on:
+  push:
+    branches: [ "main", "master" ]
+    tags: [ "v*" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch: # Permite disparar a compilação manualmente com 1 clique no GitHub
+
+jobs:
+  build-linux:
+    name: Compilar AppImage (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Gerar AppImage Linux
+        run: npm run build:appimage
+
+      - name: Salvar AppImage como Artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: Biblia-do-Instrumentista-Linux-AppImage
+          path: dist/*.AppImage
+
+  build-android:
+    name: Compilar APK (Android)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Sincronizar arquivos para o Android
+        run: npm run build:android
+
+      - name: Tornar gradlew executável
+        run: chmod +x android/gradlew
+
+      - name: Compilar APK (Debug)
+        run: |
+          cd android
+          ./gradlew assembleDebug --no-daemon
+
+      - name: Renomear APK para nome oficial
+        run: |
+          cp android/app/build/outputs/apk/debug/app-debug.apk biblia-do-instrumentista.apk
+
+      - name: Salvar APK como Artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: Biblia-do-Instrumentista-Android-APK
+          path: biblia-do-instrumentista.apk
+
+  release:
+    name: Criar Release Oficial
+    needs: [build-linux, build-android]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar AppImage compilado
+        uses: actions/download-artifact@v4
+        with:
+          name: Biblia-do-Instrumentista-Linux-AppImage
+          path: release-assets/
+
+      - name: Baixar APK compilado
+        uses: actions/download-artifact@v4
+        with:
+          name: Biblia-do-Instrumentista-Android-APK
+          path: release-assets/
+
+      - name: Publicar Release no GitHub
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-assets/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
