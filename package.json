@@ -16,7 +16,6 @@
   "build": {
     "appId": "com.bibliadoinstrumentista.app",
     "productName": "Bíblia do Instrumentista",
-    "desktopName": "biblia-do-instrumentista",
     "copyright": "Copyright © 2026 Bíblia do Instrumentista",
     "directories": {
       "output": "dist",
@@ -39,6 +38,7 @@
       "target": [
         "AppImage"
       ],
+      "desktopName": "biblia-do-instrumentista",
       "icon": "icons/icon-512.png",
       "category": "AudioVideo",
       "description": "Aplicativo para instrumentistas e ministros de louvor",
