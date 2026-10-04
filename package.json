@@ -38,7 +38,6 @@
       "target": [
         "AppImage"
       ],
-      "desktopName": "biblia-do-instrumentista",
       "icon": "icons/icon-512.png",
       "category": "AudioVideo",
       "description": "Aplicativo para instrumentistas e ministros de louvor",
