@@ -7,9 +7,9 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_OPTIONS=\"--experimental-require-module\" electron .",
-    "build:appimage": "NODE_OPTIONS=\"--experimental-require-module\" electron-builder --linux appimage",
-    "build:deb": "NODE_OPTIONS=\"--experimental-require-module\" electron-builder --linux deb",
-    "build:linux": "NODE_OPTIONS=\"--experimental-require-module\" electron-builder --linux appimage deb",
+    "build:appimage": "NODE_OPTIONS=\"--experimental-require-module\" electron-builder --linux appimage --publish never",
+    "build:deb": "NODE_OPTIONS=\"--experimental-require-module\" electron-builder --linux deb --publish never",
+    "build:linux": "NODE_OPTIONS=\"--experimental-require-module\" electron-builder --linux appimage deb --publish never",
     "build:android": "rm -rf www && mkdir -p www && cp -r index.html manifest.json css js data icons assets www/ && npx cap copy android && npx cap sync android",
     "open:android": "npx cap open android"
   },
