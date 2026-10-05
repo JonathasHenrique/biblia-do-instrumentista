@@ -274,7 +274,103 @@ class App {
     const btnAutoScroll = document.getElementById('btn-autoscroll');
     const btnFontPlus = document.getElementById('btn-font-plus');
     const btnFontMinus = document.getElementById('btn-font-minus');
+    const fontSizeLabel = document.getElementById('current-font-size-label');
     const chordSheet = document.getElementById('chord-sheet-content');
+
+    // Drawer / Barra Lateral de Hinos no Mobile
+    const btnToggleHymnList = document.getElementById('btn-toggle-hymn-list');
+    const btnCloseHymnSidebar = document.getElementById('btn-close-hymn-sidebar');
+    const hymnSidebar = document.getElementById('harpa-sidebar');
+    const sidebarBackdrop = document.getElementById('harpa-sidebar-backdrop');
+
+    this.openHymnSidebar = () => {
+      if (hymnSidebar) hymnSidebar.classList.add('open');
+      if (sidebarBackdrop) sidebarBackdrop.classList.add('active');
+      if (searchInput) {
+        setTimeout(() => searchInput.focus(), 150);
+      }
+    };
+
+    this.closeHymnSidebar = () => {
+      if (hymnSidebar) hymnSidebar.classList.remove('open');
+      if (sidebarBackdrop) sidebarBackdrop.classList.remove('active');
+    };
+
+    if (btnToggleHymnList) btnToggleHymnList.addEventListener('click', () => this.openHymnSidebar());
+    if (btnCloseHymnSidebar) btnCloseHymnSidebar.addEventListener('click', () => this.closeHymnSidebar());
+    if (sidebarBackdrop) sidebarBackdrop.addEventListener('click', () => this.closeHymnSidebar());
+
+    // Painel Retrátil de Mais Configurações (Mudar Tom Completo, Campo Harmônico, Ferramentas)
+    const btnToggleSettings = document.getElementById('btn-toggle-harpa-settings');
+    const btnCloseSettings = document.getElementById('btn-close-harpa-settings');
+    const settingsPanel = document.getElementById('harpa-collapsible-settings');
+    const settingsChevron = document.getElementById('settings-chevron');
+
+    this.toggleHarpaSettings = (forceState = null) => {
+      const shouldOpen = forceState !== null ? forceState : settingsPanel.classList.contains('collapsed');
+      if (shouldOpen) {
+        settingsPanel.classList.remove('collapsed');
+        if (btnToggleSettings) btnToggleSettings.classList.add('active');
+        if (settingsChevron) settingsChevron.textContent = '▲';
+      } else {
+        settingsPanel.classList.add('collapsed');
+        if (btnToggleSettings) btnToggleSettings.classList.remove('active');
+        if (settingsChevron) settingsChevron.textContent = '▼';
+      }
+    };
+
+    if (btnToggleSettings) {
+      btnToggleSettings.addEventListener('click', () => this.toggleHarpaSettings());
+    }
+    if (btnCloseSettings) {
+      btnCloseSettings.addEventListener('click', () => this.toggleHarpaSettings(false));
+    }
+
+    // Modo Foco / Leitura Imersiva (oculta cabeçalho do app para ver 100% da letra)
+    const btnToggleFocus = document.getElementById('btn-toggle-focus');
+    const btnExitFocusFloating = document.getElementById('btn-exit-focus-floating');
+
+    this.toggleFocusMode = () => {
+      this.isFocusMode = !this.isFocusMode;
+      document.body.classList.toggle('focus-mode-active', this.isFocusMode);
+      const focusIcon = document.getElementById('focus-btn-icon');
+      if (focusIcon) {
+        focusIcon.textContent = this.isFocusMode ? '✕' : '⛶';
+      }
+      if (btnToggleFocus) {
+        btnToggleFocus.classList.toggle('active', this.isFocusMode);
+        btnToggleFocus.title = this.isFocusMode ? 'Sair do Modo Foco' : 'Modo Foco (oculta menus do topo)';
+      }
+    };
+
+    if (btnToggleFocus) btnToggleFocus.addEventListener('click', () => this.toggleFocusMode());
+    if (btnExitFocusFloating) btnExitFocusFloating.addEventListener('click', () => this.toggleFocusMode());
+
+    // Navegação Direta de Hinos (Anterior / Próximo)
+    const btnPrevHymn = document.getElementById('btn-prev-hymn');
+    const btnNextHymn = document.getElementById('btn-next-hymn');
+
+    this.navigateHymn = (step) => {
+      if (!this.selectedHymn || !this.hymnsList.length) return;
+      const curIdx = this.hymnsList.findIndex(h => h.number === this.selectedHymn.number);
+      if (curIdx === -1) return;
+      const targetIdx = (curIdx + step + this.hymnsList.length) % this.hymnsList.length;
+      const targetHymn = this.hymnsList[targetIdx];
+      if (targetHymn) {
+        this.selectedHymn = targetHymn;
+        this.hymnTranspose = 0;
+        document.querySelectorAll('.hymn-item').forEach(i => i.classList.remove('active'));
+        const activeItem = document.querySelector(`.hymn-item[data-hymn-number="${targetHymn.number}"]`);
+        if (activeItem) {
+          activeItem.classList.add('active');
+          activeItem.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        }
+        this.renderHymnContent();
+      }
+    };
+
+    if (btnPrevHymn) btnPrevHymn.addEventListener('click', () => this.navigateHymn(-1));
+    if (btnNextHymn) btnNextHymn.addEventListener('click', () => this.navigateHymn(1));
 
     // Alternador de Cifras (Ligar / Desligar Cifras para modo Só Letra / Cantar)
     const toggleChordsBtn = document.getElementById('btn-toggle-chords');
@@ -290,8 +386,8 @@ class App {
         if (toggleChordsBtn) {
           toggleChordsBtn.classList.add('active');
           if (toggleChordsIcon) toggleChordsIcon.textContent = '🎸';
-          if (toggleChordsLabel) toggleChordsLabel.textContent = 'Cifras: Ativas';
-          toggleChordsBtn.title = 'Clique para ocultar as cifras e deixar apenas a letra para cantar';
+          if (toggleChordsLabel) toggleChordsLabel.textContent = 'Cifras';
+          toggleChordsBtn.title = 'Clique para ocultar as cifras e deixar apenas a letra completa para cantar';
         }
       } else {
         container.classList.add('lyrics-only-mode');
@@ -318,46 +414,67 @@ class App {
     searchInput.addEventListener('input', (e) => this.renderHymnList(e.target.value));
 
     // Ajuste Fino (+1 / -1 Semitom)
-    btnTransposeUp.addEventListener('click', () => {
-      this.hymnTranspose += 1;
-      this.renderHymnContent();
-    });
-    btnTransposeDown.addEventListener('click', () => {
-      this.hymnTranspose -= 1;
-      this.renderHymnContent();
-    });
-    btnTransposeReset.addEventListener('click', () => {
-      this.hymnTranspose = 0;
-      this.renderHymnContent();
-    });
+    if (btnTransposeUp) {
+      btnTransposeUp.addEventListener('click', () => {
+        this.hymnTranspose += 1;
+        this.renderHymnContent();
+      });
+    }
+    if (btnTransposeDown) {
+      btnTransposeDown.addEventListener('click', () => {
+        this.hymnTranspose -= 1;
+        this.renderHymnContent();
+      });
+    }
+    if (btnTransposeReset) {
+      btnTransposeReset.addEventListener('click', () => {
+        this.hymnTranspose = 0;
+        this.renderHymnContent();
+      });
+    }
 
-    btnAutoScroll.addEventListener('click', () => {
-      if (this.autoScrollInterval) {
-        clearInterval(this.autoScrollInterval);
-        this.autoScrollInterval = null;
-        btnAutoScroll.classList.remove('active');
-        btnAutoScroll.innerHTML = `▶ Rolagem Automática`;
-      } else {
-        btnAutoScroll.classList.add('active');
-        btnAutoScroll.innerHTML = `⏸ Parar Rolagem`;
-        this.autoScrollInterval = setInterval(() => {
-          chordSheet.scrollTop += 1;
-        }, 50);
-      }
-    });
+    // Rolagem Automática
+    if (btnAutoScroll) {
+      btnAutoScroll.addEventListener('click', () => {
+        if (this.autoScrollInterval) {
+          clearInterval(this.autoScrollInterval);
+          this.autoScrollInterval = null;
+          btnAutoScroll.classList.remove('active');
+          btnAutoScroll.innerHTML = `▶ Rolagem Automática`;
+        } else {
+          btnAutoScroll.classList.add('active');
+          btnAutoScroll.innerHTML = `⏸ Parar Rolagem`;
+          this.autoScrollInterval = setInterval(() => {
+            chordSheet.scrollTop += 1;
+          }, 50);
+        }
+      });
+    }
 
-    btnFontPlus.addEventListener('click', () => {
-      if (this.fontSize < 24) {
-        this.fontSize += 1;
-        chordSheet.style.fontSize = `${this.fontSize}px`;
-      }
-    });
-    btnFontMinus.addEventListener('click', () => {
-      if (this.fontSize > 12) {
-        this.fontSize -= 1;
-        chordSheet.style.fontSize = `${this.fontSize}px`;
-      }
-    });
+    // Tamanho da Fonte com Indicador Visual e Persistência
+    const updateFontSizeDisplay = () => {
+      if (chordSheet) chordSheet.style.fontSize = `${this.fontSize}px`;
+      if (fontSizeLabel) fontSizeLabel.textContent = `${this.fontSize}px`;
+      localStorage.setItem('bi_font_size', this.fontSize);
+    };
+
+    if (btnFontPlus) {
+      btnFontPlus.addEventListener('click', () => {
+        if (this.fontSize < 28) {
+          this.fontSize += 1;
+          updateFontSizeDisplay();
+        }
+      });
+    }
+    if (btnFontMinus) {
+      btnFontMinus.addEventListener('click', () => {
+        if (this.fontSize > 12) {
+          this.fontSize -= 1;
+          updateFontSizeDisplay();
+        }
+      });
+    }
+    updateFontSizeDisplay();
 
     // Abrir diagrama do acorde ao clicar em qualquer cifra no hino
     chordSheet.addEventListener('click', (e) => {
@@ -524,6 +641,7 @@ class App {
     filtered.forEach(h => {
       const item = document.createElement('div');
       item.className = `hymn-item ${this.selectedHymn && this.selectedHymn.number === h.number ? 'active' : ''}`;
+      item.dataset.hymnNumber = h.number;
       item.innerHTML = `
         <div class="hymn-meta">
           <span class="hymn-num">Nº ${h.number}</span>
@@ -536,6 +654,7 @@ class App {
         this.hymnTranspose = 0;
         document.querySelectorAll('.hymn-item').forEach(i => i.classList.remove('active'));
         item.classList.add('active');
+        if (this.closeHymnSidebar) this.closeHymnSidebar();
         this.renderHymnContent();
       });
       hymnListContainer.appendChild(item);
@@ -546,8 +665,14 @@ class App {
     const lyricsBody = document.getElementById('lyrics-chords-body');
     const toneBadge = document.getElementById('current-tone-badge');
     const harmonicFieldEl = document.getElementById('harmonic-field-display');
+    const quickHymnLabel = document.getElementById('current-hymn-quick-label');
 
     if (!this.selectedHymn) return;
+
+    // Atualizar seletor rápido no topo da barra compacta
+    if (quickHymnLabel) {
+      quickHymnLabel.textContent = `Nº ${this.selectedHymn.number} - ${this.selectedHymn.title}`;
+    }
 
     // Calcular tom efetivo
     const baseTone = this.selectedHymn.tone || 'C';
@@ -629,7 +754,8 @@ class App {
       // Linha de Seção / Estrofe / Refrão: [1ª Estrofe], [Refrão], [Coro]
       if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
         const sectionTitle = trimmed.slice(1, -1);
-        htmlLines.push(`<div class="section-tag">${sectionTitle}</div>`);
+        const isCoro = /coro|refr[aã]o/i.test(sectionTitle);
+        htmlLines.push(`<div class="section-tag ${isCoro ? 'is-coro-tag' : ''}">${sectionTitle}</div>`);
         continue;
       }
 
@@ -677,6 +803,11 @@ class App {
     // Aplicar estado de visibilidade de cifras (Cifras Ligadas vs Só Letra)
     if (this.updateChordsVisibility) {
       this.updateChordsVisibility();
+    }
+
+    const chordSheet = document.getElementById('chord-sheet-content');
+    if (chordSheet) {
+      chordSheet.scrollTop = 0;
     }
   }
 

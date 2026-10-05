@@ -164,8 +164,12 @@
     <section id="pane-harpa" class="tab-pane" aria-labelledby="tab-harpa-btn">
       <div class="harpa-layout">
         
-        <!-- Barra Lateral de Busca de Hinos -->
-        <aside class="harpa-sidebar">
+        <!-- Barra Lateral de Busca de Hinos (Drawer no mobile / Coluna no desktop) -->
+        <aside class="harpa-sidebar" id="harpa-sidebar">
+          <div class="sidebar-top-bar">
+            <span class="sidebar-title-tag">📖 Hinos da Harpa (640)</span>
+            <button id="btn-close-hymn-sidebar" class="tool-btn mini-btn close-sidebar-btn" title="Fechar Lista">✕</button>
+          </div>
           <div class="search-input-box">
             <svg class="search-icon" viewBox="0 0 24 24">
               <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
@@ -178,48 +182,108 @@
           </div>
         </aside>
 
+        <!-- Backdrop para fechar sidebar no mobile com 1 clique fora -->
+        <div id="harpa-sidebar-backdrop" class="harpa-backdrop"></div>
+
         <!-- Visualizador de Hino e Cifra -->
         <main class="hymn-viewer">
-          <!-- Barra 1: Controles de Exibição, Partitura e Ferramentas -->
-          <div class="viewer-toolbar">
-            <!-- Alternador de Cifras (Modo Cifrado vs Modo Só Letra / Cantar) -->
-            <div class="tool-group">
-              <button id="btn-toggle-chords" class="tool-btn active" title="Alternar entre ver cifras ou apenas a letra do hino">
-                <span id="toggle-chords-icon">🎸</span>
-                <span id="toggle-chords-label">Cifras: Ativas</span>
+          <!-- Botão Flutuante para Sair do Modo Foco (visível apenas em Modo Foco) -->
+          <button id="btn-exit-focus-floating" class="floating-exit-focus-btn" title="Sair do Modo Foco">✕ Sair do Modo Foco</button>
+
+          <!-- Barra 1: Barra Compacta de Leitura & Ações Essenciais -->
+          <div class="viewer-compact-toolbar">
+            <!-- Bloco Esquerdo: Seletor do Hino + Passador de Hinos -->
+            <div class="compact-left-group">
+              <button id="btn-toggle-hymn-list" class="tool-btn hymn-picker-btn" title="Abrir índice completo dos 640 hinos">
+                <span class="picker-icon">📖</span>
+                <span id="current-hymn-quick-label" class="picker-title">Nº 1 Chuvas de Graça</span>
+                <span class="picker-arrow">▾</span>
               </button>
+
+              <div class="stepper-buttons">
+                <button id="btn-prev-hymn" class="tool-btn mini-btn" title="Hino anterior (◀)">◀</button>
+                <button id="btn-next-hymn" class="tool-btn mini-btn" title="Próximo hino (▶)">▶</button>
+              </div>
             </div>
 
-            <!-- Rolagem Automática & Fonte -->
-            <div class="tool-group">
-              <button id="btn-autoscroll" class="tool-btn">▶ Rolagem Automática</button>
-              <button id="btn-font-minus" class="tool-btn" title="Diminuir texto">A-</button>
-              <button id="btn-font-plus" class="tool-btn" title="Aumentar texto">A+</button>
-              <button id="btn-open-chords" class="tool-btn" style="border-color:var(--gold-primary); color:var(--gold-light);">🎸 Acordes</button>
+            <!-- Bloco Direito: Cifras/Letra, Tom Rápido e Botão 'Mais Configurações' -->
+            <div class="compact-right-group">
+              <!-- Alternador de Cifras (Modo Cifrado vs Modo Só Letra / Cantar) -->
+              <button id="btn-toggle-chords" class="tool-btn active" title="Alternar entre ver cifras ou apenas a letra do hino">
+                <span id="toggle-chords-icon">🎸</span>
+                <span id="toggle-chords-label">Cifras</span>
+              </button>
+
+              <!-- Tom Atual e Transposição Rápida de Semitom -->
+              <div class="quick-transpose-box">
+                <button id="btn-transpose-down" class="tool-btn mini-btn" title="Descer 1 semitom">-½</button>
+                <span id="current-tone-badge" class="tone-badge" title="Tom atual">Tom: G</span>
+                <button id="btn-transpose-up" class="tool-btn mini-btn" title="Subir 1 semitom">+½</button>
+              </div>
+
+              <!-- Botão Mais Configurações (Abre/Oculta o Painel Completo de Tom e Ferramentas) -->
+              <button id="btn-toggle-harpa-settings" class="tool-btn settings-toggle-btn" title="Ver mais configurações: mudar tom direto, campo harmônico, fonte e rolagem">
+                <span class="settings-btn-icon">⚙️</span>
+                <span class="settings-btn-text">Ajustes</span>
+                <span id="settings-chevron" class="settings-chevron">▼</span>
+              </button>
+
+              <!-- Botão Modo Foco / Tela Cheia (oculta barras do app para foco total na letra) -->
+              <button id="btn-toggle-focus" class="tool-btn icon-only-btn" title="Modo Foco / Tela Cheia (oculta topo do app)">
+                <span id="focus-btn-icon">⛶</span>
+              </button>
             </div>
           </div>
 
-          <!-- Barra 2: Seletor Inteligente de Tons Direto -->
-          <div class="tone-selector-strip" style="background: rgba(18, 24, 38, 0.8); padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 0.5rem;">
-            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
-              <div style="display: flex; align-items: center; gap: 0.5rem;">
-                <span style="font-size: 0.8rem; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Mudar Tom:</span>
-                <div id="tone-buttons-container" style="display: flex; gap: 0.3rem; flex-wrap: wrap;">
+          <!-- Painel Retrátil: Mais Configurações (Oculto por padrão para máxima visibilidade da letra) -->
+          <div id="harpa-collapsible-settings" class="harpa-settings-panel collapsed">
+            <div class="settings-panel-inner">
+              
+              <!-- Seção de Seleção Direta de Tom -->
+              <div class="settings-panel-row">
+                <div class="row-header-actions">
+                  <span class="settings-row-label">🎛️ Mudar Tom Diretamente:</span>
+                  <button id="btn-transpose-reset" class="tool-btn mini-btn" title="Restaurar Tom Original">Tom Original</button>
+                </div>
+                <div id="tone-buttons-container" class="tone-buttons-grid">
                   <!-- Botões de Tom C, D, E, F, G, A, B gerados dinamicamente via JS -->
                 </div>
               </div>
 
-              <div style="display: flex; align-items: center; gap: 0.4rem;">
-                <button id="btn-transpose-down" class="tool-btn" style="padding: 0.3rem 0.6rem;" title="Descer 1 semitom">-½</button>
-                <span id="current-tone-badge" class="tone-badge" style="padding: 0.3rem 0.6rem; font-size: 0.85rem;">Tom: G</span>
-                <button id="btn-transpose-up" class="tool-btn" style="padding: 0.3rem 0.6rem;" title="Subir 1 semitom">+½</button>
-                <button id="btn-transpose-reset" class="tool-btn" style="padding: 0.3rem 0.6rem;" title="Tom Original">Original</button>
+              <!-- Painel do Campo Harmônico & Dicas de Instrumentista -->
+              <div id="harmonic-field-display" class="harmonic-field-container">
+                <!-- Preenchido dinamicamente via JS -->
               </div>
-            </div>
 
-            <!-- Painel do Campo Harmônico & Dicas de Instrumentista -->
-            <div id="harmonic-field-display" style="font-size: 0.8rem; color: #cbd5e1; background: rgba(0,0,0,0.25); padding: 0.4rem 0.75rem; border-radius: 8px; border-left: 3px solid var(--gold-primary);">
-              <!-- Preenchido dinamicamente via JS -->
+              <!-- Seção de Ferramentas de Leitura & Estudo -->
+              <div class="settings-panel-row tools-row">
+                <div class="tool-feature-item">
+                  <span class="feature-label">Tamanho da Letra:</span>
+                  <div class="font-stepper">
+                    <button id="btn-font-minus" class="tool-btn mini-btn" title="Diminuir texto">A-</button>
+                    <span id="current-font-size-label" class="font-size-indicator">16px</span>
+                    <button id="btn-font-plus" class="tool-btn mini-btn" title="Aumentar texto">A+</button>
+                  </div>
+                </div>
+
+                <div class="tool-feature-item">
+                  <span class="feature-label">Rolagem Automática:</span>
+                  <button id="btn-autoscroll" class="tool-btn">▶ Rolagem Automática</button>
+                </div>
+
+                <div class="tool-feature-item">
+                  <span class="feature-label">Dicionário:</span>
+                  <button id="btn-open-chords" class="tool-btn chord-dict-btn">🎸 Acordes</button>
+                </div>
+              </div>
+
+              <!-- Botão Rápido para Ocultar Ajustes e Retornar à Letra -->
+              <div class="settings-dismiss-bar">
+                <button id="btn-close-harpa-settings" class="tool-btn dismiss-settings-btn">
+                  ▲ Ocultar Configurações (Ver Letra Completa)
+                </button>
+              </div>
+
             </div>
           </div>
 
@@ -228,7 +292,6 @@
             <div id="lyrics-chords-body"></div>
           </div>
         </main>
-
       </div>
     </section>
 
