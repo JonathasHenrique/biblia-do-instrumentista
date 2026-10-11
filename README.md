@@ -12,10 +12,17 @@
 > **O aplicativo definitivo para instrumentistas, ministros de louvor e congregações.**  
 > Afinador profissional de alta precisão, hinário da Harpa Cristã com cifras dinâmicas e partituras, e Bíblia Sagrada completa com funcionamento **100% offline**.
 
+### 📥 Download Rápido (Releases Oficiais)
+
+[![Baixar APK Android](https://img.shields.io/badge/Download-Android_APK_(v1.0.1)-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/biblia-do-instrumentista.apk)
+[![Baixar Linux AppImage](https://img.shields.io/badge/Download-Linux_AppImage_(v1.0.1)-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest)
+[![Ver Todas as Releases](https://img.shields.io/badge/Ver_Todas-Releases_no_GitHub-24292e?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases)
+
 ---
 
 ## 📋 Sumário
 
+- [Download e Instalação Rápida](#-download-e-instala%C3%A7%C3%A3o-r%C3%A1pida)
 - [Visão Geral](#-vis%C3%A3o-geral)
 - [Módulos e Funcionalidades](#-m%C3%B3dulos-e-funcionalidades)
   - [1. Afinador Digital de Alta Precisão](#1--afinador-digital-de-alta-precis%C3%A3o)
@@ -33,6 +40,23 @@
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
 - [Apoie o Projeto](#-apoie-o-projeto)
 - [Licença](#-licen%C3%A7a)
+
+---
+
+## 📥 Download e Instalação Rápida
+
+| Plataforma | Pacote / Arquivo | Tamanho | Download Direto | Versão |
+| :--- | :--- | :--- | :--- | :--- |
+| **Android** (Celular / Tablet) | `biblia-do-instrumentista.apk` | ~9.1 MB | [⬇️ **Baixar APK Direto**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/biblia-do-instrumentista.apk) | [v1.0.1 (Latest)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
+| **Linux Desktop** (AppImage) | `Biblia.do.Instrumentista-1.0.1.AppImage` | ~118 MB | [⬇️ **Baixar AppImage**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) | [v1.0.1 (Latest)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
+
+> 📌 **Como instalar no Android:**  
+> Toque no link de download acima. Quando o arquivo terminar de baixar, abra a notificação e confirme a instalação no seu aparelho. O aplicativo funciona 100% offline.  
+>  
+> 📌 **Como executar no Linux:**  
+> Dê permissão de execução ao arquivo baixado com `chmod +x *.AppImage` ou pelas propriedades do arquivo e clique duas vezes para abrir.  
+>  
+> 💡 **Histórico e outras versões:** Acesse a página oficial de [**Releases no GitHub**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases).
 
 ---
 
