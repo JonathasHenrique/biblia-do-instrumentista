@@ -3,6 +3,8 @@
 [![Versão](https://img.shields.io/badge/vers%C3%A3o-1.0.1-10b981.svg?style=flat-square)](package.json)
 [![Licença](https://img.shields.io/badge/licen%C3%A7a-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Plataforma](https://img.shields.io/badge/plataformas-Linux%20%7C%20Android%20%7C%20Web-f59e0b.svg?style=flat-square)](#-plataformas-e-distribui%C3%A7%C3%A3o)
+[![Apoiar](https://img.shields.io/badge/Apoiar-Mercado%20Pago-009EE3.svg?style=flat-square&logo=mercadopago)](https://link.mercadopago.com.br/johntechdicas)
+[![YouTube](https://img.shields.io/badge/YouTube-John%20TechDicas-FF0000.svg?style=flat-square&logo=youtube)](https://www.youtube.com/@johntechdicas)
 [![Node](https://img.shields.io/badge/node.js-%3E%3D20.0-339933.svg?style=flat-square&logo=node.js)](https://nodejs.org)
 [![Capacitor](https://img.shields.io/badge/Capacitor-v8.5.2-119EFF.svg?style=flat-square&logo=capacitor)](https://capacitorjs.com)
 [![Electron](https://img.shields.io/badge/Electron-v41.7.1-47848F.svg?style=flat-square&logo=electron)](https://www.electronjs.org)
@@ -29,6 +31,7 @@
   - [Android (APK)](#android-apk)
 - [Automação e CI/CD](#-automa%C3%A7%C3%A3o-e-cicd)
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Apoie o Projeto](#-apoie-o-projeto)
 - [Licença](#-licen%C3%A7a)
 
 ---
@@ -234,6 +237,20 @@ O repositório inclui automação completa via **GitHub Actions** (`.github/work
 - **Empacotamento Mobile**: Capacitor.
 - **Partituras**: Renderização vetorial SVG via notação ABC.
 - **Armazenamento de Dados**: Bases estruturadas em JSON de alta performance.
+
+---
+
+## ❤️ Apoie o Projeto
+
+A **Bíblia do Instrumentista** é um projeto de código aberto, 100% gratuito e livre de anúncios, desenvolvido de forma independente para abençoar músicos, levitas, instrumentistas e congregações.
+
+Se este aplicativo tem sido útil nos seus ensaios, ministrações ou estudos, você pode apoiar voluntariamente o projeto com qualquer valor para ajudar nos custos de manutenção e publicação:
+
+[![Apoiar via Mercado Pago](https://img.shields.io/badge/Apoiar%20via-Mercado%20Pago-009EE3?style=for-the-badge&logo=mercadopago&logoColor=white)](https://link.mercadopago.com.br/johntechdicas)
+
+👉 **Link de Apoio:** [link.mercadopago.com.br/johntechdicas](https://link.mercadopago.com.br/johntechdicas) *(Pix ou Cartão)*
+
+📺 Acompanhe tutoriais, novidades e dicas no canal **[John TechDicas no YouTube](https://www.youtube.com/@johntechdicas)**!
 
 ---
 
