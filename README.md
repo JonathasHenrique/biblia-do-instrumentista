@@ -1,13 +1,13 @@
 # 🎸 Bíblia do Instrumentista
 
-[![Versão](https://img.shields.io/badge/versao-1.0.1-10b981.svg?style=flat-square)](package.json)
-[![Licença](https://img.shields.io/badge/licenca-MIT-blue.svg?style=flat-square)](LICENSE)
-[![Plataformas](https://img.shields.io/badge/plataformas-Linux_%7C_Android_%7C_Web-f59e0b.svg?style=flat-square)](#-plataformas-e-distribui%C3%A7%C3%A3o)
-[![Apoiar](https://img.shields.io/badge/Apoiar-Mercado_Pago-009ee3.svg?style=flat-square&logo=mercadopago&logoColor=white)](https://link.mercadopago.com.br/johntechdicas)
-[![YouTube](https://img.shields.io/badge/YouTube-John_TechDicas-ff0000.svg?style=flat-square&logo=youtube)](https://www.youtube.com/@johntechdicas)
-[![Node](https://img.shields.io/badge/Node.js-v20+-339933.svg?style=flat-square&logo=nodedotjs)](https://nodejs.org)
-[![Capacitor](https://img.shields.io/badge/Capacitor-v8.5.2-119eff.svg?style=flat-square&logo=capacitor)](https://capacitorjs.com)
-[![Electron](https://img.shields.io/badge/Electron-v41.7.1-47848f.svg?style=flat-square&logo=electron)](https://www.electronjs.org)
+[![Versão](https://img.shields.io/badge/Versao-v1.0.1-10b981?style=flat-square)](package.json)
+[![Licença](https://img.shields.io/badge/Licenca-MIT-blue?style=flat-square)](LICENSE)
+[![Plataformas](https://img.shields.io/badge/Plataformas-Linux_%7C_Android_%7C_Web-orange?style=flat-square)](#-plataformas-e-distribui%C3%A7%C3%A3o)
+[![Apoiar](https://img.shields.io/badge/Apoiar-Mercado_Pago-009ee3?style=flat-square)](https://link.mercadopago.com.br/johntechdicas)
+[![YouTube](https://img.shields.io/badge/YouTube-John_TechDicas-red?style=flat-square)](https://www.youtube.com/@johntechdicas)
+[![Node](https://img.shields.io/badge/Node.js-v20+-339933?style=flat-square)](https://nodejs.org)
+[![Capacitor](https://img.shields.io/badge/Capacitor-v8.5.2-119eff?style=flat-square)](https://capacitorjs.com)
+[![Electron](https://img.shields.io/badge/Electron-v41.7.1-47848f?style=flat-square)](https://www.electronjs.org)
 
 > **O aplicativo definitivo para instrumentistas, ministros de louvor e congregações.**  
 > Afinador profissional de alta precisão, hinário da Harpa Cristã com cifras dinâmicas e partituras, e Bíblia Sagrada completa com funcionamento **100% offline**.
