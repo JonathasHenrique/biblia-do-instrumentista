@@ -1,6 +1,6 @@
 # 🎸 Bíblia do Instrumentista
 
-[![Versão](https://img.shields.io/badge/Versao-v1.0.1-10b981?style=flat-square)](package.json)
+[![Versão](https://img.shields.io/github/v/release/JonathasHenrique/biblia-do-instrumentista?style=flat-square&color=10b981&label=Versao)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest)
 [![Licença](https://img.shields.io/badge/Licenca-MIT-blue?style=flat-square)](LICENSE)
 [![Plataformas](https://img.shields.io/badge/Plataformas-Linux_%7C_Android_%7C_Web-orange?style=flat-square)](#-plataformas-e-distribui%C3%A7%C3%A3o)
 [![Apoiar](https://img.shields.io/badge/Apoiar-Mercado_Pago-009ee3?style=flat-square)](https://link.mercadopago.com.br/johntechdicas)
@@ -12,10 +12,10 @@
 > **O aplicativo definitivo para instrumentistas, ministros de louvor e congregações.**  
 > Afinador profissional de alta precisão, hinário da Harpa Cristã com cifras dinâmicas e partituras, e Bíblia Sagrada completa com funcionamento **100% offline**.
 
-### 📥 Download Rápido (Releases Oficiais)
+### 📥 Download Rápido (Versão Mais Recente)
 
-[![Baixar APK Android](https://img.shields.io/badge/Download-Android_APK_(v1.0.1)-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/biblia-do-instrumentista.apk)
-[![Baixar Linux AppImage](https://img.shields.io/badge/Download-Linux_AppImage_(v1.0.1)-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest)
+[![Baixar APK Android](https://img.shields.io/badge/Download-Android_APK_(Latest)-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/biblia-do-instrumentista.apk)
+[![Baixar Linux AppImage](https://img.shields.io/badge/Download-Linux_AppImage_(Latest)-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest)
 [![Ver Todas as Releases](https://img.shields.io/badge/Ver_Todas-Releases_no_GitHub-24292e?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases)
 
 ---
