@@ -74,7 +74,7 @@ function createWindow() {
             dialog.showMessageBox(mainWindow, {
               type: 'info',
               title: 'Bíblia do Instrumentista',
-              message: 'Bíblia do Instrumentista v1.0.0',
+              message: 'Bíblia do Instrumentista v1.0.2',
               detail: 'Aplicativo completo de Afinação, Harpa Cristã Cifrada e Bíblia Sagrada ACF.\nTotalmente offline e feito para ministros de louvor e músicos cristãos.',
               buttons: ['OK']
             });

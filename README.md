@@ -47,8 +47,8 @@
 
 | Plataforma | Pacote / Arquivo | Tamanho | Download Direto | Versão |
 | :--- | :--- | :--- | :--- | :--- |
-| **Android** (Celular / Tablet) | `biblia-do-instrumentista.apk` | ~9.1 MB | [⬇️ **Baixar APK Direto**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/biblia-do-instrumentista.apk) | [v1.0.1 (Latest)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
-| **Linux Desktop** (AppImage) | `Biblia.do.Instrumentista-1.0.1.AppImage` | ~118 MB | [⬇️ **Baixar AppImage**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) | [v1.0.1 (Latest)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
+| **Android** (Celular / Tablet) | `biblia-do-instrumentista.apk` | ~9.1 MB | [⬇️ **Baixar APK Direto**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/biblia-do-instrumentista.apk) | [v1.0.2 (Latest)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
+| **Linux Desktop** (AppImage) | `Biblia.do.Instrumentista-1.0.2.AppImage` | ~118 MB | [⬇️ **Baixar AppImage**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) | [v1.0.2 (Latest)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
 
 > 📌 **Como instalar no Android:**  
 > Toque no link de download acima. Quando o arquivo terminar de baixar, abra a notificação e confirme a instalação no seu aparelho. O aplicativo funciona 100% offline.  
@@ -100,7 +100,10 @@ O aplicativo integra:
   - Notação musical em pauta dupla: **Clave de Sol** (melodia e harmonia) e **Clave de Fá** (condução para contrabaixo).
 - **Rolagem Automática (Auto-Scroll)**:
   - Velocidade ajustável para leitura contínua durante a execução musical, mantendo as mãos livres no instrumento.
-- **Recursos da Versão v1.0.1**:
+- **Recursos da Versão v1.0.2**:
+  - Validação e revisão canônica de todas as letras e harmonias da Harpa Cristã;
+  - Inclusão das cifras completas do Hino 6 (*Na Maldição da Cruz*) em Lá bemol ($A\flat$);
+  - Correção integral da letra canônica e cifras do Hino 7 (*Cristo Cura, Sim!*) e demais hinos litúrgicos (24, 26, 115, 301, 507, 509, 515, 568 e 577);
   - Painéis de controle retráteis para ampliar o espaço útil de visualização;
   - Menu lateral rápido para localização imediata de hinos por número ou título;
   - **Modo Foco** com interface minimalista para apresentações e ministrações.
