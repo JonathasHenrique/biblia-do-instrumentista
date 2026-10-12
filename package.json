@@ -3,8 +3,8 @@
   "version": "1.0.2",
   "description": "Bíblia do Instrumentista — Afinador, Harpa Cristã Cifrada e Bíblia Sagrada ACF",
   "main": "main.js",
-  "author": "Bíblia do Instrumentista",
-  "license": "MIT",
+  "author": "Jonathas Henrique",
+  "license": "CC-BY-NC-SA-4.0",
   "scripts": {
     "start": "cross-env NODE_OPTIONS=\"--experimental-require-module\" electron .",
     "build:appimage": "cross-env NODE_OPTIONS=\"--experimental-require-module\" electron-builder --linux appimage --publish never",
@@ -17,7 +17,7 @@
   "build": {
     "appId": "com.bibliadoinstrumentista.app",
     "productName": "Bíblia do Instrumentista",
-    "copyright": "Copyright © 2026 Bíblia do Instrumentista",
+    "copyright": "Copyright © 2026 Jonathas Henrique",
     "directories": {
       "output": "dist",
       "buildResources": "assets"
