@@ -18,10 +18,8 @@
 [![Baixar Linux AppImage](https://img.shields.io/badge/Download-Linux_AppImage_(Latest)-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest)
 [![Ver Todas as Releases](https://img.shields.io/badge/Ver_Todas-Releases_no_GitHub-24292e?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases)
 [![Apresentação do App](https://img.shields.io/badge/Apresentação-Manual_Completo_(Prints)-d97706?style=for-the-badge&logo=appveyor&logoColor=white)](docs/APRESENTACAO_APP.md)
-[![Manual do Afinador](https://img.shields.io/badge/Manual-Guia_do_Afinador_(YIN)-7f52ff?style=for-the-badge&logo=music&logoColor=white)](docs/GUIA_AFINADOR.md)
 
-> 📱 **Apresentação do Aplicativo:** Conheça todos os recursos no [**Guia de Apresentação da Bíblia do Instrumentista**](docs/APRESENTACAO_APP.md) com prints detalhados de cada módulo.  
-> 🎸 **Guia Prático de Afinação:** Consulte o [**Manual Completo do Afinador Digital**](docs/GUIA_AFINADOR.md) para aprender a afinar violão, contrabaixo e usar afinações alternativas como Drop D e DADGAD.
+> 📱 **Apresentação Oficial:** Conheça todos os recursos no [**Guia de Apresentação da Bíblia do Instrumentista**](docs/APRESENTACAO_APP.md) com prints detalhados dos 4 módulos (Afinador, Harpa Cifrada, Bíblia e Metrônomo).
 
 ---
 
@@ -29,7 +27,6 @@
 
 - [Download e Instalação Rápida](#-download-e-instala%C3%A7%C3%A3o-r%C3%A1pida)
 - [Apresentação Completa do Aplicativo (Manual com Prints)](docs/APRESENTACAO_APP.md)
-- [Guia Prático do Afinador Digital (Violão e Baixo)](docs/GUIA_AFINADOR.md)
 - [Visão Geral](#-vis%C3%A3o-geral)
 - [Módulos e Funcionalidades](#-m%C3%B3dulos-e-funcionalidades)
   - [1. Afinador Digital de Alta Precisão](#1--afinador-digital-de-alta-precis%C3%A3o)
