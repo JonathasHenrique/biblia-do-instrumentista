@@ -534,44 +534,6 @@ class App {
       const fullList = [];
       const curatedMap = new Map(harpaHymns.map(h => [h.number, h]));
 
-      // Função de harmonização rítmica linha a linha com cadências completas (I - IV - V7 - vi)
-      const harmonizeLines = (lines, tone, isCoro = false) => {
-        const hf = getHarmonicField(tone);
-        const I = hf.I || 'G';
-        const IV = hf.IV || 'C';
-        const V = (hf.V7 || 'D7').replace(/7$/, '') || I;
-        const V7 = hf.V7 || 'D7';
-        const vi = hf.vi || 'Em';
-
-        let res = '';
-        lines.forEach((lineText, idx) => {
-          let chordLine = '';
-          const pos = idx % 4;
-          if (!isCoro) {
-            if (pos === 0) {
-              chordLine = `${I.padEnd(20)}${V}`;
-            } else if (pos === 1) {
-              chordLine = `${V7.padEnd(20)}${I}`;
-            } else if (pos === 2) {
-              chordLine = `${IV.padEnd(20)}${vi}`;
-            } else {
-              chordLine = `${IV.padEnd(8)}${V7.padEnd(10)}${I}`;
-            }
-          } else {
-            if (pos === 0) {
-              chordLine = `${I.padEnd(20)}${IV}`;
-            } else if (pos === 1) {
-              chordLine = `${I.padEnd(20)}${V7}`;
-            } else if (pos === 2) {
-              chordLine = `${I.padEnd(20)}${IV}`;
-            } else {
-              chordLine = `${I.padEnd(8)}${V7.padEnd(10)}${I}`;
-            }
-          }
-          res += `${chordLine}\n${lineText}\n`;
-        });
-        return res;
-      };
 
       for (let i = 1; i <= 640; i++) {
         const key = String(i);
@@ -595,21 +557,21 @@ class App {
             return (!isNaN(na) && !isNaN(nb)) ? na - nb : a.localeCompare(b);
           });
 
-          // Ordem cantada congregacional oficial: 1ª Estrofe -> Refrão -> 2ª Estrofe -> 3ª Estrofe...
-          verseKeys.forEach((vNum, idx) => {
+          // Ordem cantada congregacional oficial: 1ª Estrofe -> Refrão -> 2ª Estrofe -> Refrão...
+          verseKeys.forEach((vNum) => {
             const vText = (verses[vNum] || '').replace(/\s*Autor:.*$/i, '').trim();
             const vLines = vText.split(/<br\s*\/?>/gi).map(l => l.trim()).filter(Boolean);
             const label = isNaN(vNum) ? `[Estrofe ${vNum}]` : `[${vNum}ª Estrofe]`;
-            formattedLyrics += `${label}\n${harmonizeLines(vLines, tone, false)}\n`;
+            formattedLyrics += `${label}\n${vLines.join('\n')}\n\n`;
 
-            if (idx === 0 && coroLines.length > 0) {
-              formattedLyrics += `[Refrão]\n${harmonizeLines(coroLines, tone, true)}\n`;
+            if (coroLines.length > 0) {
+              formattedLyrics += `[Refrão]\n${coroLines.join('\n')}\n\n`;
             }
           });
 
           // Caso raro de hino composto apenas de coro
           if (verseKeys.length === 0 && coroLines.length > 0) {
-            formattedLyrics += `[Refrão]\n${harmonizeLines(coroLines, tone, true)}\n`;
+            formattedLyrics += `[Refrão]\n${coroLines.join('\n')}\n\n`;
           }
 
           const rawTitle = raw.hino || `Hino ${i}`;
@@ -618,7 +580,7 @@ class App {
           fullList.push({
             number: i,
             title: cleanTitle,
-            author: "Harpa Cristã Oficial (CPAD)",
+            author: "Harpa Cristã Clássica",
             tone: tone,
             rhythm: rhythm,
             intro: intro,
@@ -735,6 +697,7 @@ class App {
     const rawLines = rawLyrics.split(/\r?\n/);
     const htmlLines = [];
     let hasRenderedIntro = false;
+    let inCoro = false;
 
     for (let i = 0; i < rawLines.length; i++) {
       const line = rawLines[i];
@@ -768,8 +731,8 @@ class App {
       // Linha de Seção / Estrofe / Refrão: [1ª Estrofe], [Refrão], [Coro]
       if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
         const sectionTitle = trimmed.slice(1, -1);
-        const isCoro = /coro|refr[aã]o/i.test(sectionTitle);
-        htmlLines.push(`<div class="section-tag ${isCoro ? 'is-coro-tag' : ''}">${sectionTitle}</div>`);
+        inCoro = /coro|refr[aã]o/i.test(sectionTitle);
+        htmlLines.push(`<div class="section-tag ${inCoro ? 'is-coro-tag' : ''}">${sectionTitle}</div>`);
         continue;
       }
 
@@ -790,7 +753,8 @@ class App {
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;');
-      htmlLines.push(`<div class="lyric-line">${safeLyric}</div>`);
+      const coroClass = inCoro ? ' coro-line' : '';
+      htmlLines.push(`<div class="lyric-line${coroClass}">${safeLyric}</div>`);
     }
 
     // Se o hino tiver introdução catalogada mas não nas linhas, insere banner no topo

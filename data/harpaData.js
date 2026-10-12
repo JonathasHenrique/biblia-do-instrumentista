@@ -1,6 +1,6 @@
 // ============================================================================
 // BÍBLIA DO INSTRUMENTISTA - HARPA CRISTÃ CURADA
-// Padrão Fiel ao Hinário Cifrado Clássico das Assembleias de Deus (EME Editora / CPAD)
+// Hinário Litúrgico Clássico Cifrado
 // Arranjos e Cifras com Introduções, Harmonia Rítmica e Letra Verificada
 // ============================================================================
 
@@ -1343,5 +1343,304 @@ G                 C         G
 Não terás o poder, nem terás o prazer,
 Em       Am       D7        G
 Que o Espírito Santo nos der!`
+  },
+  {
+    number: 8,
+    title: "Cristo, o Fiel Amigo",
+    author: "Harpa Cristã Cifrada",
+    tone: "F",
+    rhythm: "Valsa (3/4)",
+    intro: "F Bb F C7 F",
+    lyrics: `[Tom: F]
+
+INTROD.: F Bb F C7 F
+
+[1ª Estrofe]
+ F                     C7
+Cristo Jesus é fiel amigo,
+            F
+Ele só, Ele só.
+                      C7
+E nas fraquezas está comigo,
+            F
+Ele só, Ele só.
+
+[Refrão]
+ F                   Bb
+E nas lutas de cada dia,
+            F                 C7
+Cristo nunca me deixa só;
+ F                    Bb
+Pois Ele é meu seguro guia,
+        F   C7  F
+Ele só, Ele só.
+
+[2ª Estrofe]
+ F                     C7
+Não há amigo mais nobre e digno,
+               F
+Não, não há; não, não há.
+                      C7
+Nem mais humilde e mais benigno,
+               F
+Não, não há; não, não há.`
+  },
+  {
+    number: 10,
+    title: "Eu Te Louvo",
+    author: "Harpa Cristã Cifrada",
+    tone: "D",
+    rhythm: "Hino Solene (4/4)",
+    intro: "D G D Bm Em A7 D",
+    lyrics: `[Tom: D]
+
+INTROD.: D G D Bm Em A7 D
+
+[1ª Estrofe]
+ D                     A7
+Glória a Deus, o Pai Eterno,
+              D
+Cujo trono é os céus;
+                  A7
+O universo Lhe pertence.
+                 D
+Glória, sim, ao nosso Deus.
+
+[Refrão]
+ D                     A7
+Eu Te louvo! Eu Te louvo!
+                    D
+Oh! Jesus meu Salvador!
+ D                     G
+Dai-Lhe glórias, ó remidos!
+          D         A7      D
+Pois Seu sangue limpa o pecador.
+
+[2ª Estrofe]
+ D                     A7
+Glória ao Filho mui amado,
+              D
+Que merece o louvor,
+                  A7
+Demos glória ao Seu nome,
+                 D
+Ao bendito Redentor.`
+  },
+  {
+    number: 26,
+    title: "A Formosa Jerusalém",
+    author: "Harpa Cristã Cifrada",
+    tone: "F",
+    rhythm: "Marcha Solene (4/4)",
+    intro: "F Bb F C7 F",
+    lyrics: `[Tom: F]
+
+INTROD.: F Bb F C7 F
+
+[1ª Estrofe]
+ F                     C7
+Que glória havemos de ter
+                  F
+Na formosa Jerusalém,
+                   C7
+Quando o Cordeiro nos vir
+                F
+Na cidade do grande além!
+
+[Refrão]
+ F            Bb
+Oh! Jerusalém, formosa Jerusalém!
+ F                    C7
+Caminho alegre para ti,
+ F               Bb
+Pois em ti verei o meu amado Rei,
+ F         C7     F
+Na glória sempiterna!
+
+[2ª Estrofe]
+ F                     C7
+Nenhum perigo haverá
+                  F
+Na formosa Jerusalém;
+                   C7
+Toda a tristeza findará
+                F
+Na cidade do grande além!`
+  },
+  {
+    number: 301,
+    title: "Vem Cear",
+    author: "Harpa Cristã Cifrada",
+    tone: "F",
+    rhythm: "Marcha Congregacional (4/4)",
+    intro: "F C7 F Bb F C7 F",
+    lyrics: `[Tom: F]
+
+INTROD.: F C7 F Bb F C7 F
+
+[1ª Estrofe]
+ F                     C7
+Cristo já nos preparou
+                     F
+Um manjar que nos comprou,
+                     C7
+E agora nos convida a cear;
+ F                     C7
+Com celestial maná
+                   F
+Que de graça todos dá,
+                      C7       F
+Vem, faminto, tua alma fartar.
+
+[Refrão]
+ F
+"Vem cear", o Mestre chama
+ C7
+- "Vem cear".
+ F                  C7
+Mesmo hoje tu te podes saciar;
+ F                  Bb
+Poucos pães multiplicou,
+ F            C7
+Água em vinho transformou,
+ F               C7         F
+Vem, faminto, a Jesus, "vem cear".
+
+[2ª Estrofe]
+ F                     C7
+Eis a multidão sentada
+                     F
+Na relva verdejante,
+                     C7
+Comendo do manjar divinal;
+ F                     C7
+Assim Cristo nos sacia,
+                   F
+Com poder e alegria,
+                      C7       F
+Nesta ceia de amor fraternal.`
+  },
+  {
+    number: 507,
+    title: "Jesus Salva",
+    author: "Harpa Cristã Cifrada",
+    tone: "G",
+    rhythm: "Marcha de Apelo (4/4)",
+    intro: "G C G D7 G",
+    lyrics: `[Tom: G]
+
+INTROD.: G C G D7 G
+
+[1ª Estrofe]
+ G                     D7
+O Salvador te quer salvar,
+              G
+Ó pecador, vem sem tardar;
+                  C
+Recebe no teu coração
+      G    D7     G
+A gloriosa salvação!
+
+[Refrão]
+ G                 D7
+Jesus salva, Jesus salva,
+              G
+Jesus salva o pecador.
+                 C
+Ele te ama, hoje te chama,
+     G      D7    G
+Com Sua voz de amor.
+
+[2ª Estrofe]
+ G                     D7
+O Salvador te chama, vem,
+              G
+Recebe logo o sumo bem;
+                  C
+A salvação, o dom de Deus,
+      G    D7     G
+E a herança lá nos céus.`
+  },
+  {
+    number: 509,
+    title: "Ao Passar o Jordão",
+    author: "Harpa Cristã Cifrada",
+    tone: "G",
+    rhythm: "Marcha Triunfal (4/4)",
+    intro: "G C G D7 G",
+    lyrics: `[Tom: G]
+
+INTROD.: G C G D7 G
+
+[1ª Estrofe]
+ G                          C
+Quando o Jordão passarmos unidos,
+     G             D7
+E entrarmos no céu, veremos lá,
+ G                      C
+Como areia da praia os remidos,
+        G      D7          G
+Oh! Que gloriosa vista será!
+
+[Refrão]
+ G                   C
+Tantos como a areia da praia!
+ G                   D7
+Tantos como a areia do mar!
+ G                      C
+Que verei ali, da morte remidos,
+         G     D7         G
+Quando a praia do céu alcançar.
+
+[2ª Estrofe]
+ G                          C
+Quando virmos o Rei dos remidos,
+     G             D7
+Em Sua glória, no trono real,
+ G                      C
+Com os santos e anjos vestidos
+        G      D7          G
+De pureza celestial!`
+  },
+  {
+    number: 568,
+    title: "Manso e Suave",
+    author: "Harpa Cristã Cifrada",
+    tone: "F",
+    rhythm: "Valsa / Toada (6/8)",
+    intro: "F Bb F C7 F",
+    lyrics: `[Tom: F]
+
+INTROD.: F Bb F C7 F
+
+[1ª Estrofe]
+ F               C7
+Manso e suave Jesus está chamando,
+ Bb        F         C7
+Chama por ti e por mim;
+ F                 C7
+Eis que Ele à porta espera velando,
+ Bb        C7        F
+Vela por ti e por mim.
+
+[Refrão]
+ F       C7
+Vem já! vem já!
+ Bb      F      C7
+Alma cansada, vem já!
+ F               Bb
+Manso e suave, Jesus está chamando:
+ F           C7         F
+"Chama, ó pecador, vem já!"
+
+[2ª Estrofe]
+ F               C7
+Por que nós temos de hesitar ainda,
+ Bb        F         C7
+Quando Jesus nos convida?
+ F                 C7
+Por que desdenhar a graça infinda,
+ Bb        C7        F
+Que nos concede a vida?`
   }
 ];
