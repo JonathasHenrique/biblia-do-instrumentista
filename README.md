@@ -17,12 +17,16 @@
 [![Baixar APK Android](https://img.shields.io/badge/Download-Android_APK_(Latest)-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/biblia-do-instrumentista.apk)
 [![Baixar Linux AppImage](https://img.shields.io/badge/Download-Linux_AppImage_(Latest)-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest)
 [![Ver Todas as Releases](https://img.shields.io/badge/Ver_Todas-Releases_no_GitHub-24292e?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases)
+[![Manual do Afinador](https://img.shields.io/badge/Manual-Guia_do_Afinador_(YIN)-7f52ff?style=for-the-badge&logo=music&logoColor=white)](docs/GUIA_AFINADOR.md)
+
+> 📖 **Guia Prático de Afinação:** Consulte o [**Manual Completo do Afinador Digital**](docs/GUIA_AFINADOR.md) para aprender a afinar violão, contrabaixo e usar afinações alternativas como Drop D e DADGAD.
 
 ---
 
 ## 📋 Sumário
 
 - [Download e Instalação Rápida](#-download-e-instala%C3%A7%C3%A3o-r%C3%A1pida)
+- [Guia Prático do Afinador Digital (Violão e Baixo)](docs/GUIA_AFINADOR.md)
 - [Visão Geral](#-vis%C3%A3o-geral)
 - [Módulos e Funcionalidades](#-m%C3%B3dulos-e-funcionalidades)
   - [1. Afinador Digital de Alta Precisão](#1--afinador-digital-de-alta-precis%C3%A3o)
