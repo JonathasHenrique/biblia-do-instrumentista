@@ -1,6 +1,9 @@
 const { app, BrowserWindow, session, Menu, protocol } = require('electron');
 const path = require('path');
 
+// Permite execução imediata de áudio Web Audio API no Linux/AppImage sem bloqueio de autoplay do Chromium
+app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
+
 // Permite que fetch() funcione com arquivos locais (JSONs da Harpa e Bíblia)
 protocol.registerSchemesAsPrivileged([
   {

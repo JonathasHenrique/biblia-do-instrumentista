@@ -13,6 +13,7 @@ export class TunerEngine {
     this.buffer = null;
     this.currentInstrument = "violao"; // violao, baixo4, baixo5, cromatico
     this.currentTuning = "standard";
+    this.playbackCtx = null;
 
     // Frequência A4 de calibração padrão (Hz)
     this.a4 = 440;
@@ -348,25 +349,92 @@ export class TunerEngine {
     this.a4 = parseFloat(freq) || 440;
   }
 
-  // Diapasão / Gerador de som de referência
-  playTone(freq, duration = 2.0) {
-    try {
+  // Diapasão / Gerador de som de referência com cache persistente e síntese acústica
+  getPlaybackContext() {
+    if (!this.playbackCtx || this.playbackCtx.state === "closed") {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      const ctx = this.audioCtx || new AudioCtx();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
+      this.playbackCtx = new AudioCtx({ latencyHint: "interactive" });
+    }
+    if (this.playbackCtx.state === "suspended") {
+      this.playbackCtx.resume().catch(() => {});
+    }
+    return this.playbackCtx;
+  }
 
-      osc.type = "triangle"; // Som mais quente e acústico
-      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+  playTone(freq, duration = 2.5) {
+    try {
+      const ctx = this.getPlaybackContext();
+      if (ctx.state === "suspended") {
+        ctx.resume().catch(() => {});
+      }
 
-      gain.gain.setValueAtTime(0.2, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+      const now = ctx.currentTime;
+      const masterGain = ctx.createGain();
+      masterGain.connect(ctx.destination);
 
-      osc.connect(gain);
-      gain.connect(ctx.destination);
+      // Volume master com ataque suave (evita estalos em alto-falantes)
+      masterGain.gain.setValueAtTime(0.0001, now);
+      masterGain.gain.linearRampToValueAtTime(0.35, now + 0.015);
+      masterGain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
 
-      osc.start();
-      osc.stop(ctx.currentTime + duration);
+      // Série Harmônica de Corda Acústica (Fundamental + Harmônicos 2, 3, 4 e 5)
+      // Permite que até alto-falantes pequenos de notebook e celular reproduzam frequências graves (ex: 41Hz de baixo ou 82Hz de violão)
+      const harmonics = [
+        { mult: 1, gain: 0.35, decay: 1.0 },   // Fundamental
+        { mult: 2, gain: 0.25, decay: 0.85 },  // 2º harmônico (presença/oitava)
+        { mult: 3, gain: 0.15, decay: 0.70 },  // 3º harmônico (brilho e definição)
+        { mult: 4, gain: 0.08, decay: 0.55 },  // 4º harmônico (corpo)
+        { mult: 5, gain: 0.04, decay: 0.40 }   // 5º harmônico (ataque metálico)
+      ];
+
+      harmonics.forEach(h => {
+        const targetFreq = freq * h.mult;
+        if (targetFreq > (ctx.sampleRate / 2)) return; // Limite de Nyquist
+
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(targetFreq, now);
+
+        g.gain.setValueAtTime(h.gain, now);
+        g.gain.exponentialRampToValueAtTime(0.0001, now + (duration * h.decay));
+
+        osc.connect(g);
+        g.connect(masterGain);
+
+        osc.start(now);
+        osc.stop(now + duration);
+      });
+
+      // Ataque de percussão/palheta (Pluck transient - estalo natural de contato com a corda)
+      try {
+        const bufferSize = Math.floor(ctx.sampleRate * 0.015); // 15ms
+        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          output[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.2));
+        }
+
+        const noise = ctx.createBufferSource();
+        noise.buffer = noiseBuffer;
+
+        const filter = ctx.createBiquadFilter();
+        filter.type = "bandpass";
+        filter.frequency.setValueAtTime(Math.min(freq * 3, 3000), now);
+        filter.Q.setValueAtTime(2, now);
+
+        const noiseGain = ctx.createGain();
+        noiseGain.gain.setValueAtTime(0.12, now);
+        noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.015);
+
+        noise.connect(filter);
+        filter.connect(noiseGain);
+        noiseGain.connect(masterGain);
+
+        noise.start(now);
+      } catch (_) {}
+
     } catch (e) {
       console.warn("Falha ao tocar som de referência:", e);
     }

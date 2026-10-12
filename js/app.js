@@ -226,6 +226,19 @@ class App {
     }
 
     renderTuningOptions();
+
+    // Pré-aquecimento do Web Audio API no primeiro gesto do usuário (elimina latência e cold-start)
+    const warmupAudio = () => {
+      if (this.tuner) {
+        this.tuner.getPlaybackContext();
+      }
+      window.removeEventListener('pointerdown', warmupAudio);
+      window.removeEventListener('keydown', warmupAudio);
+      window.removeEventListener('touchstart', warmupAudio);
+    };
+    window.addEventListener('pointerdown', warmupAudio, { once: true, passive: true });
+    window.addEventListener('keydown', warmupAudio, { once: true, passive: true });
+    window.addEventListener('touchstart', warmupAudio, { once: true, passive: true });
   }
 
   renderStringPegs() {
