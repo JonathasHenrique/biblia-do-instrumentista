@@ -563,21 +563,24 @@ class App {
             return (!isNaN(na) && !isNaN(nb)) ? na - nb : a.localeCompare(b);
           });
 
-          // Ordem cantada congregacional oficial: 1ª Estrofe -> Refrão -> 2ª Estrofe -> Refrão...
+          // Ordem cantada congregacional oficial com harmonia litúrgica completa: 1ª Estrofe -> Refrão...
           verseKeys.forEach((vNum) => {
             const vText = (verses[vNum] || '').replace(/\s*Autor:.*$/i, '').trim();
             const vLines = vText.split(/<br\s*\/?>/gi).map(l => l.trim()).filter(Boolean);
             const label = isNaN(vNum) ? `[Estrofe ${vNum}]` : `[${vNum}ª Estrofe]`;
-            formattedLyrics += `${label}\n${vLines.join('\n')}\n\n`;
+            const harmonizedVerse = this.buildHarmonizedSection(vLines, tone, false);
+            formattedLyrics += `${label}\n${harmonizedVerse}\n\n`;
 
             if (coroLines.length > 0) {
-              formattedLyrics += `[Refrão]\n${coroLines.join('\n')}\n\n`;
+              const harmonizedCoro = this.buildHarmonizedSection(coroLines, tone, true);
+              formattedLyrics += `[Refrão]\n${harmonizedCoro}\n\n`;
             }
           });
 
           // Caso raro de hino composto apenas de coro
           if (verseKeys.length === 0 && coroLines.length > 0) {
-            formattedLyrics += `[Refrão]\n${coroLines.join('\n')}\n\n`;
+            const harmonizedCoro = this.buildHarmonizedSection(coroLines, tone, true);
+            formattedLyrics += `[Refrão]\n${harmonizedCoro}\n\n`;
           }
 
           const rawTitle = raw.hino || `Hino ${i}`;
@@ -600,6 +603,93 @@ class App {
     } catch (e) {
       console.warn("Harpa completa carregada via conjunto curado básico:", e);
     }
+  }
+
+  buildHarmonizedSection(lines, tone, isCoro) {
+    if (!lines || lines.length === 0) return '';
+    const hf = getHarmonicField(tone);
+    const I = hf.I;
+    const ii = hf.ii;
+    const IV = hf.IV;
+    const V = hf.V;
+    const V7 = hf.V7;
+    const vi = hf.vi;
+
+    const total = lines.length;
+    const outLines = [];
+
+    for (let idx = 0; idx < total; idx++) {
+      const lyric = lines[idx];
+      const len = Math.max(lyric.length, 28);
+
+      let chordList = [];
+      if (total === 4) {
+        if (idx === 0) chordList = [I, IV, I];
+        else if (idx === 1) chordList = [vi, ii, V7];
+        else if (idx === 2) chordList = [I, IV, I];
+        else chordList = [vi, ii, V7, I];
+      } else if (total === 8) {
+        if (idx === 0) chordList = [I, IV];
+        else if (idx === 1) chordList = [I, V7];
+        else if (idx === 2) chordList = [I, IV];
+        else if (idx === 3) chordList = [I, V7, I];
+        else if (idx === 4) chordList = [I, IV];
+        else if (idx === 5) chordList = [vi, V7];
+        else if (idx === 6) chordList = [I, IV];
+        else chordList = [I, V7, I];
+      } else if (total === 2) {
+        if (idx === 0) chordList = [I, IV, I];
+        else chordList = [vi, ii, V7, I];
+      } else if (total === 3) {
+        if (idx === 0) chordList = [I, IV];
+        else if (idx === 1) chordList = [vi, V7];
+        else chordList = [IV, V7, I];
+      } else if (total === 5) {
+        if (idx === 0) chordList = [I, IV];
+        else if (idx === 1) chordList = [I, V];
+        else if (idx === 2) chordList = [I, IV];
+        else if (idx === 3) chordList = [vi, V7];
+        else chordList = [IV, V7, I];
+      } else if (total === 6) {
+        if (idx === 0) chordList = [I, IV, I];
+        else if (idx === 1) chordList = [I, V];
+        else if (idx === 2) chordList = [I, IV, I];
+        else if (idx === 3) chordList = [I, V];
+        else if (idx === 4) chordList = [vi, ii, V7];
+        else chordList = [IV, V7, I];
+      } else {
+        if (idx === total - 1) chordList = [vi, ii, V7, I];
+        else if (idx % 2 === 0) chordList = [I, IV, I];
+        else chordList = [vi, ii, V7];
+      }
+
+      let chordLine = '';
+      if (chordList.length === 2) {
+        const p2 = Math.max(chordList[0].length + 2, Math.floor(len * 0.52));
+        chordLine = chordList[0] + ' '.repeat(Math.max(1, p2 - chordList[0].length)) + chordList[1];
+      } else if (chordList.length === 3) {
+        const p2 = Math.max(chordList[0].length + 2, Math.floor(len * 0.42));
+        const p3 = Math.max(p2 + chordList[1].length + 2, Math.floor(len * 0.82));
+        const s1 = ' '.repeat(Math.max(1, p2 - chordList[0].length));
+        const s2 = ' '.repeat(Math.max(1, p3 - (p2 + chordList[1].length)));
+        chordLine = chordList[0] + s1 + chordList[1] + s2 + chordList[2];
+      } else if (chordList.length === 4) {
+        const p2 = Math.max(chordList[0].length + 2, Math.floor(len * 0.26));
+        const p3 = Math.max(p2 + chordList[1].length + 2, Math.floor(len * 0.56));
+        const p4 = Math.max(p3 + chordList[2].length + 2, Math.floor(len * 0.86));
+        const s1 = ' '.repeat(Math.max(1, p2 - chordList[0].length));
+        const s2 = ' '.repeat(Math.max(1, p3 - (p2 + chordList[1].length)));
+        const s3 = ' '.repeat(Math.max(1, p4 - (p3 + chordList[2].length)));
+        chordLine = chordList[0] + s1 + chordList[1] + s2 + chordList[2] + s3 + chordList[3];
+      } else {
+        chordLine = chordList.join('        ');
+      }
+
+      outLines.push(chordLine);
+      outLines.push(lyric);
+    }
+
+    return outLines.join('\n');
   }
 
   renderHymnList(filter = '') {
@@ -687,7 +777,7 @@ class App {
     if (this.activeCapo) {
       capoHtml = `
         <div class="capo-recommendation-bar" style="border-color: var(--gold-primary);">
-          <div class="capo-tip-text" style="color: #fef08a;">
+          <div class="capo-tip-text capo-tip-text-accent">
             🎸 <strong>Capo na ${this.activeCapo.fret}ª casa ativo:</strong> Você toca formas fáceis de [${this.activeCapo.shape}]. Som real afinado em [${this.activeCapo.originalTone}].
           </div>
           <div class="capo-buttons-group">

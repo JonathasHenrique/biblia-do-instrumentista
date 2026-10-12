@@ -1291,7 +1291,7 @@ body.focus-mode-active .floating-exit-focus-btn {
 
 .coro-line {
   font-style: italic;
-  color: #fef08a !important;
+  color: #fef08a;
 }
 
 /* ==========================================================================
@@ -2168,12 +2168,80 @@ body.light-theme .chord-token:hover {
 }
 
 body.light-theme .lyric-line {
-  color: #0f172a;
+  color: #0f172a !important;
+}
+
+body.light-theme .coro-line {
+  color: #0f172a !important;
+  font-style: italic !important;
+  font-weight: 500 !important;
 }
 
 body.light-theme .section-tag {
-  background: rgba(2, 132, 199, 0.12);
-  color: #0369a1;
+  background: rgba(2, 132, 199, 0.12) !important;
+  color: #0369a1 !important;
+  border: 1px solid rgba(2, 132, 199, 0.25) !important;
+}
+
+body.light-theme .section-tag.is-coro-tag {
+  background: rgba(217, 119, 6, 0.15) !important;
+  color: #b45309 !important;
+  border: 1px solid rgba(217, 119, 6, 0.4) !important;
+  font-weight: 800 !important;
+}
+
+body.light-theme .capo-recommendation-bar {
+  background: #fffbeb !important;
+  border: 1px solid #fcd34d !important;
+  color: #92400e !important;
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.08) !important;
+}
+
+body.light-theme .capo-tip-text {
+  color: #78350f !important;
+}
+
+body.light-theme .capo-tip-text strong {
+  color: #92400e !important;
+}
+
+body.light-theme .capo-tip-text-accent {
+  color: #92400e !important;
+}
+
+body.light-theme .capo-active-banner {
+  background: #fef3c7 !important;
+  border: 1px solid #d97706 !important;
+  color: #78350f !important;
+}
+
+body.light-theme .capo-active-banner strong {
+  color: #92400e !important;
+}
+
+body.light-theme .chord-beginner-guide {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.light-theme .chord-legend-row {
+  color: #475569 !important;
+}
+
+body.light-theme .chord-legend-row strong {
+  color: #0f172a !important;
+}
+
+body.light-theme .chord-tip-pestana {
+  background: #fffbeb !important;
+  color: #92400e !important;
+  border-left-color: #d97706 !important;
+}
+
+body.light-theme .chord-tip-open {
+  background: #ecfdf5 !important;
+  color: #065f46 !important;
+  border-left-color: #10b981 !important;
 }
 
 body.light-theme .bible-text-content {

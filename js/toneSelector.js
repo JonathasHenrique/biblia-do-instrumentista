@@ -20,11 +20,15 @@ const CHROMATIC_FLAT  = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "
 
 // Calcula os acordes do Campo Harmônico Maior (I, ii, iii, IV, V, vi, vii°)
 export function getHarmonicField(tone) {
-  let rootIndex = CHROMATIC_SCALE.indexOf(tone);
-  if (rootIndex === -1) rootIndex = CHROMATIC_FLAT.indexOf(tone);
+  const normTone = (tone || 'C').trim();
+  const isFlatKey = ["F", "Bb", "Eb", "Ab", "Db", "Gb", "Dm", "Gm", "Cm", "Fm", "Bbm"].includes(normTone);
+  const scale = isFlatKey ? CHROMATIC_FLAT : CHROMATIC_SCALE;
+
+  let rootIndex = scale.indexOf(normTone);
+  if (rootIndex === -1) rootIndex = (isFlatKey ? CHROMATIC_SCALE : CHROMATIC_FLAT).indexOf(normTone);
   if (rootIndex === -1) rootIndex = 0;
 
-  const getNote = (step) => CHROMATIC_SCALE[(rootIndex + step) % 12];
+  const getNote = (step) => scale[(rootIndex + step) % 12];
 
   const I   = getNote(0);
   const ii  = getNote(2) + "m";
