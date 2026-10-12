@@ -14,7 +14,8 @@
 
 ### 📥 Download Rápido (Versão Mais Recente)
 
-[![Baixar Windows EXE](https://img.shields.io/badge/Download-Windows_EXE_(Latest)-0078D4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest)
+[![Baixar Windows Portátil](https://img.shields.io/badge/Download-Windows_Portátil_(Sem_Instalação)-00a4ef?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/Biblia.do.Instrumentista.Portatil.1.0.2.exe)
+[![Baixar Instalador Windows](https://img.shields.io/badge/Download-Windows_Setup_(Instalador)-0078D4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/Biblia.do.Instrumentista.Setup.1.0.2.exe)
 [![Baixar APK Android](https://img.shields.io/badge/Download-Android_APK_(Latest)-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/biblia-do-instrumentista.apk)
 [![Baixar Linux AppImage](https://img.shields.io/badge/Download-Linux_AppImage_(Latest)-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest)
 [![Ver Todas as Releases](https://img.shields.io/badge/Ver_Todas-Releases_no_GitHub-24292e?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases)
@@ -53,12 +54,14 @@
 
 | Plataforma | Pacote / Arquivo | Tamanho | Download Direto | Versão |
 | :--- | :--- | :--- | :--- | :--- |
-| **Windows Desktop** (Instalador & Portátil) | `*.Setup.exe` ou `*.exe` | ~85 MB | [⬇️ **Baixar para Windows**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) | [v1.0.2 (Latest)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
+| **Windows Desktop** (⭐ **PORTÁTIL — SEM INSTALAÇÃO**) | `Biblia.do.Instrumentista.Portatil.1.0.2.exe` | ~96 MB | [⬇️ **Baixar Portátil (Direto)**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/Biblia.do.Instrumentista.Portatil.1.0.2.exe) | [v1.0.2 (Latest)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
+| **Windows Desktop** (Instalador Setup) | `Biblia.do.Instrumentista.Setup.1.0.2.exe` | ~96 MB | [⬇️ **Baixar Instalador (Direto)**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/Biblia.do.Instrumentista.Setup.1.0.2.exe) | [v1.0.2 (Latest)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
 | **Android** (Celular / Tablet) | `biblia-do-instrumentista.apk` | ~9.1 MB | [⬇️ **Baixar APK Direto**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/biblia-do-instrumentista.apk) | [v1.0.2 (Latest)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
 | **Linux Desktop** (AppImage) | `Biblia.do.Instrumentista-1.0.2.AppImage` | ~118 MB | [⬇️ **Baixar AppImage**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) | [v1.0.2 (Latest)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
 
-> 📌 **Como instalar no Windows:**  
-> Baixe o instalador `.exe` (ou versão portátil) e execute com dois cliques. Não requer configurações adicionais.  
+> 📌 **Como executar no Windows:**  
+> - **⚡ Versão Portátil (`Biblia.do.Instrumentista.Portatil.1.0.2.exe`):** Baixe e dê dois cliques para usar imediatamente. **Não precisa instalar nada** no computador (ótimo para pendrives e computadores da igreja).  
+> - **💿 Instalador Oficial (`Biblia.do.Instrumentista.Setup.1.0.2.exe`):** Assistente tradicional que cria atalhos na Área de Trabalho e no Menu Iniciar.  
 >  
 > 📌 **Como instalar no Android:**  
 > Toque no link de download acima. Quando o arquivo terminar de baixar, abra a notificação e confirme a instalação no seu aparelho. O aplicativo funciona 100% offline.  
@@ -149,6 +152,7 @@ O aplicativo integra:
 
 | Plataforma | Pacote / Formato | Motor de Execução | Status |
 | :--- | :--- | :--- | :--- |
+| **Windows Desktop** | `.exe` (Instalador Setup & Versão **Portátil**) | Electron v41 | ✅ Suportado |
 | **Linux Desktop** | `.AppImage` e `.deb` | Electron v41 | ✅ Suportado |
 | **Android** | `.apk` (Android 7.0+) | Capacitor v8 | ✅ Suportado |
 | **Web / PWA** | Web App Offline | HTML5 / CSS3 / ES Modules | ✅ Suportado |

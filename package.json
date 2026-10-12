@@ -56,7 +56,11 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "Bíblia do Instrumentista"
+      "shortcutName": "Bíblia do Instrumentista",
+      "artifactName": "Biblia.do.Instrumentista.Setup.${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "Biblia.do.Instrumentista.Portatil.${version}.${ext}"
     }
   },
   "devDependencies": {

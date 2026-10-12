@@ -103,7 +103,8 @@ O projeto é de código aberto e disponibilizado gratuitamente para edificar mú
 
 | Plataforma | Pacote | Como Instalar | Link Direto |
 | :--- | :--- | :--- | :--- |
-| **Windows Desktop** | `*.Setup.exe` ou `*.exe` (~85 MB) | Baixe o instalador e execute com 2 cliques no Windows. | [⬇️ **Download Windows**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
+| **Windows Portátil** | `Biblia.do.Instrumentista.Portatil.1.0.2.exe` (~96 MB) | **Sem instalação:** execute direto com 2 cliques (ideal para pendrive). | [⬇️ **Download Portátil**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/Biblia.do.Instrumentista.Portatil.1.0.2.exe) |
+| **Windows Instalador** | `Biblia.do.Instrumentista.Setup.1.0.2.exe` (~96 MB) | Assistente tradicional que cria atalhos no Desktop e Menu Iniciar. | [⬇️ **Download Setup**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/Biblia.do.Instrumentista.Setup.1.0.2.exe) |
 | **Android** | `biblia-do-instrumentista.apk` (~9 MB) | Baixe o arquivo e confirme a instalação no celular. | [⬇️ **Download APK**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/biblia-do-instrumentista.apk) |
 | **Linux Desktop** | `Biblia.do.Instrumentista-1.0.2.AppImage` (~118 MB) | Dê permissão de execução (`chmod +x`) e execute com 2 cliques. | [⬇️ **Download AppImage**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
 
