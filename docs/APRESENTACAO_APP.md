@@ -24,7 +24,7 @@ A **Bíblia do Instrumentista** foi concebida para solucionar definitivamente es
 * 🎯 **Tudo em um só lugar:** Afinação, Harpa Cifrada, Bíblia e Metrônomo a 1 toque de distância;
 * ⚡ **100% Offline:** Não depende de sinal de Wi-Fi ou dados móveis na igreja;
 * 🕊️ **Foco no Louvor:** Zero propagandas, interface limpa e respeitosa ao ambiente de culto;
-* 💻 **Multiplataforma:** Disponível tanto para **celulares Android** quanto para **computadores Linux**.
+* 💻 **Multiplataforma:** Disponível para computadores **Windows**, celulares **Android** e computadores **Linux**.
 
 ---
 
@@ -103,6 +103,7 @@ O projeto é de código aberto e disponibilizado gratuitamente para edificar mú
 
 | Plataforma | Pacote | Como Instalar | Link Direto |
 | :--- | :--- | :--- | :--- |
+| **Windows Desktop** | `*.Setup.exe` ou `*.exe` (~85 MB) | Baixe o instalador e execute com 2 cliques no Windows. | [⬇️ **Download Windows**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
 | **Android** | `biblia-do-instrumentista.apk` (~9 MB) | Baixe o arquivo e confirme a instalação no celular. | [⬇️ **Download APK**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/biblia-do-instrumentista.apk) |
 | **Linux Desktop** | `Biblia.do.Instrumentista-1.0.2.AppImage` (~118 MB) | Dê permissão de execução (`chmod +x`) e execute com 2 cliques. | [⬇️ **Download AppImage**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
 

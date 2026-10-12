@@ -2,7 +2,7 @@
 
 [![Versão](https://img.shields.io/github/v/release/JonathasHenrique/biblia-do-instrumentista?style=flat-square&color=10b981&label=Versao)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest)
 [![Licença](https://img.shields.io/badge/Licenca-MIT-blue?style=flat-square)](LICENSE)
-[![Plataformas](https://img.shields.io/badge/Plataformas-Linux_%7C_Android_%7C_Web-orange?style=flat-square)](#-plataformas-e-distribui%C3%A7%C3%A3o)
+[![Plataformas](https://img.shields.io/badge/Plataformas-Windows_%7C_Linux_%7C_Android_%7C_Web-orange?style=flat-square)](#-plataformas-e-distribui%C3%A7%C3%A3o)
 [![Apoiar](https://img.shields.io/badge/Apoiar-Mercado_Pago-009ee3?style=flat-square)](https://link.mercadopago.com.br/johntechdicas)
 [![YouTube](https://img.shields.io/badge/YouTube-John_TechDicas-red?style=flat-square)](https://www.youtube.com/@johntechdicas)
 [![Node](https://img.shields.io/badge/Node.js-v20+-339933?style=flat-square)](https://nodejs.org)
@@ -14,6 +14,7 @@
 
 ### 📥 Download Rápido (Versão Mais Recente)
 
+[![Baixar Windows EXE](https://img.shields.io/badge/Download-Windows_EXE_(Latest)-0078D4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest)
 [![Baixar APK Android](https://img.shields.io/badge/Download-Android_APK_(Latest)-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/biblia-do-instrumentista.apk)
 [![Baixar Linux AppImage](https://img.shields.io/badge/Download-Linux_AppImage_(Latest)-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest)
 [![Ver Todas as Releases](https://img.shields.io/badge/Ver_Todas-Releases_no_GitHub-24292e?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases)
@@ -38,6 +39,7 @@
 - [Estrutura do Projeto](#-estrutura-do-projeto)
 - [Como Rodar Localmente](#-como-rodar-localmente)
 - [Como Compilar para Produção](#-como-compilar-para-produ%C3%A7%C3%A3o)
+  - [Windows (.exe Instalador e Portátil)](#windows-exe-instalador-e-portátil)
   - [Linux (AppImage e .deb)](#linux-appimage-e-deb)
   - [Android (APK)](#android-apk)
 - [Automação e CI/CD](#-automa%C3%A7%C3%A3o-e-cicd)
@@ -51,9 +53,13 @@
 
 | Plataforma | Pacote / Arquivo | Tamanho | Download Direto | Versão |
 | :--- | :--- | :--- | :--- | :--- |
+| **Windows Desktop** (Instalador & Portátil) | `*.Setup.exe` ou `*.exe` | ~85 MB | [⬇️ **Baixar para Windows**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) | [v1.0.2 (Latest)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
 | **Android** (Celular / Tablet) | `biblia-do-instrumentista.apk` | ~9.1 MB | [⬇️ **Baixar APK Direto**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest/download/biblia-do-instrumentista.apk) | [v1.0.2 (Latest)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
 | **Linux Desktop** (AppImage) | `Biblia.do.Instrumentista-1.0.2.AppImage` | ~118 MB | [⬇️ **Baixar AppImage**](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) | [v1.0.2 (Latest)](https://github.com/JonathasHenrique/biblia-do-instrumentista/releases/latest) |
 
+> 📌 **Como instalar no Windows:**  
+> Baixe o instalador `.exe` (ou versão portátil) e execute com dois cliques. Não requer configurações adicionais.  
+>  
 > 📌 **Como instalar no Android:**  
 > Toque no link de download acima. Quando o arquivo terminar de baixar, abra a notificação e confirme a instalação no seu aparelho. O aplicativo funciona 100% offline.  
 >  
@@ -216,6 +222,15 @@ npx serve .
 ---
 
 ## 📦 Como Compilar para Produção
+
+### Windows (.exe Instalador e Portátil)
+```bash
+# Gerar instalador Setup.exe e executável Portable para Windows
+npm run build:win
+```
+Os executáveis (`.exe`) serão gerados na pasta `dist/`.
+
+---
 
 ### Linux (AppImage e .deb)
 ```bash

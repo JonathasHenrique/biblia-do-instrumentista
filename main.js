@@ -26,7 +26,7 @@ function createWindow() {
     minWidth: 850,
     minHeight: 600,
     title: 'Bíblia do Instrumentista',
-    icon: path.join(__dirname, 'assets', 'icon.png'),
+    icon: path.join(__dirname, 'assets', process.platform === 'win32' ? 'icon.ico' : 'icon.png'),
     backgroundColor: '#080b12',
     webPreferences: {
       nodeIntegration: false,

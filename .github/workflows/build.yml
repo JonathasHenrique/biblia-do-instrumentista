@@ -1,4 +1,4 @@
-name: Compilar Bíblia do Instrumentista (Linux & Android)
+name: Compilar Bíblia do Instrumentista (Windows, Linux & Android)
 
 on:
   push:
@@ -9,6 +9,32 @@ on:
   workflow_dispatch: # Permite disparar a compilação manualmente com 1 clique no GitHub
 
 jobs:
+  build-windows:
+    name: Compilar Executável (Windows)
+    runs-on: windows-latest
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Gerar Executáveis Windows (Instalador & Portátil)
+        run: npm run build:win
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Salvar Executáveis como Artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: Biblia-do-Instrumentista-Windows-EXE
+          path: dist/*.exe
+
   build-linux:
     name: Compilar AppImage (Linux)
     runs-on: ubuntu-latest
@@ -79,12 +105,18 @@ jobs:
 
   release:
     name: Criar Release Oficial
-    needs: [build-linux, build-android]
+    needs: [build-windows, build-linux, build-android]
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
+      - name: Baixar Executáveis Windows compilados
+        uses: actions/download-artifact@v4
+        with:
+          name: Biblia-do-Instrumentista-Windows-EXE
+          path: release-assets/
+
       - name: Baixar AppImage compilado
         uses: actions/download-artifact@v4
         with:
