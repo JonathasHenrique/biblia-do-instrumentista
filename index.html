@@ -57,8 +57,12 @@
         </button>
       </nav>
 
-      <!-- Alternador de Tema: Modo Escuro / Modo Claro -->
+      <!-- Ações do Cabeçalho: Apoiar & Tema -->
       <div class="header-actions">
+        <button id="donate-btn" class="donate-btn" title="Apoiar o Projeto" aria-label="Apoiar o Projeto">
+          <span>☕</span>
+          <span>Apoiar</span>
+        </button>
         <button id="theme-toggle-btn" class="theme-toggle-btn" title="Alternar entre Modo Escuro e Modo Claro" aria-label="Alternar Tema">
           <span id="theme-toggle-icon">☀️</span>
           <span id="theme-toggle-label">Claro</span>
@@ -432,6 +436,27 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Modal de Doação / Apoio ao Projeto -->
+  <div id="modal-donate" class="modal-overlay" style="display: none;">
+    <div class="modal-card" style="max-width: 460px; text-align: center;">
+      <div class="modal-header" style="justify-content: flex-end; margin-bottom: 0.5rem; border-bottom: none;">
+        <button id="btn-close-donate" class="close-modal-btn" aria-label="Fechar">✕</button>
+      </div>
+      <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">☕</div>
+      <h3 style="color: var(--gold-light, #fbbf24); font-size: 1.35rem; margin-bottom: 0.6rem; font-family: var(--font-title);">Apoie a Bíblia do Instrumentista</h3>
+      <p style="font-size: 0.95rem; color: #94a3b8; line-height: 1.6; margin-bottom: 1.5rem;">
+        Este aplicativo é 100% gratuito, sem anúncios e de código aberto. Sua contribuição voluntária ajuda a manter o projeto ativo e trazer novas melhorias para músicos e ministérios!
+      </p>
+      <a href="https://link.mercadopago.com.br/johntechdicas" target="_blank" rel="noopener noreferrer" 
+         style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; width: 100%; padding: 0.95rem; border-radius: 14px; text-decoration: none; font-weight: 700; font-size: 1rem; background: #009ee3; color: #ffffff; box-shadow: 0 4px 15px rgba(0, 158, 227, 0.35); transition: all 0.2s ease; margin-bottom: 0.85rem;">
+        💳 Contribuir no Mercado Pago / Pix
+      </a>
+      <button id="btn-close-donate-footer" class="theme-toggle-btn" style="width: 100%; justify-content: center; padding: 0.75rem; border-radius: 12px;">
+        Continuar Usando
+      </button>
     </div>
   </div>
 

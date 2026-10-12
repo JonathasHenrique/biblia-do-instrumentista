@@ -168,10 +168,40 @@ body {
   box-shadow: 0 4px 14px rgba(217, 119, 6, 0.4);
 }
 
-/* Botão de Alternância de Tema */
+/* Botão de Alternância de Tema & Doação */
 .header-actions {
   display: flex;
   align-items: center;
+  gap: 0.6rem;
+}
+
+.donate-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: var(--gold-light, #fbbf24);
+  padding: 0.5rem 0.95rem;
+  border-radius: 12px;
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.donate-btn:hover {
+  background: rgba(245, 158, 11, 0.22);
+  border-color: var(--gold-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.25);
+}
+
+body.light-theme .donate-btn {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  color: #b45309;
 }
 
 .theme-toggle-btn {

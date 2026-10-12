@@ -39,6 +39,7 @@ class App {
     this.initMetronome();
     this.initNavigation();
     this.initChordsModal();
+    this.initDonateModal();
 
     if (urlParams.get('modal') === 'chords') {
       this.showChordModal(urlParams.get('chord') || 'D');
@@ -1196,6 +1197,32 @@ class App {
     }
     if (this.renderSelectedChord) {
       this.renderSelectedChord(target);
+    }
+  }
+
+  initDonateModal() {
+    const donateBtn = document.getElementById('donate-btn');
+    const modal = document.getElementById('modal-donate');
+    const closeBtn = document.getElementById('btn-close-donate');
+    const closeFooterBtn = document.getElementById('btn-close-donate-footer');
+
+    if (donateBtn && modal) {
+      donateBtn.addEventListener('click', () => {
+        modal.style.display = 'flex';
+      });
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          modal.style.display = 'none';
+        });
+      }
+      if (closeFooterBtn) {
+        closeFooterBtn.addEventListener('click', () => {
+          modal.style.display = 'none';
+        });
+      }
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+      });
     }
   }
 
