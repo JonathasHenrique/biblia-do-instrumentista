@@ -44,32 +44,119 @@ export function getHarmonicField(tone) {
     V7,
     vi,
     relativeMinor: vi,
-    capoTips: getCapoTips(I)
+    capoTips: getCapoTips(I),
+    capoRec: getCapoRecommendation(I)
   };
 }
 
-// Sugestões práticas de Capotraste para violonistas
-function getCapoTips(targetTone) {
-  const easyShapes = [
-    { shape: "C", index: 0 },
-    { shape: "D", index: 2 },
-    { shape: "E", index: 4 },
-    { shape: "G", index: 7 },
-    { shape: "A", index: 9 }
-  ];
+// Recomendações didáticas e práticas de Capotraste para violonistas novatos
+export function getCapoRecommendation(targetTone) {
+  let norm = (targetTone || 'C').trim();
+  if (norm === "A#") norm = "Bb";
+  if (norm === "D#") norm = "Eb";
+  if (norm === "G#") norm = "Ab";
+  if (norm === "Db") norm = "C#";
+  if (norm === "Gb") norm = "F#";
 
-  let targetIndex = CHROMATIC_SCALE.indexOf(targetTone);
-  if (targetIndex === -1) targetIndex = CHROMATIC_FLAT.indexOf(targetTone);
-  if (targetIndex === -1) return null;
-
-  for (const s of easyShapes) {
-    let diff = targetIndex - s.index;
-    if (diff < 0) diff += 12;
-    if (diff >= 1 && diff <= 5) {
-      return `Toque com forma de [${s.shape}] e Capo na ${diff}ª casa.`;
+  const RECOMMENDATIONS = {
+    "G": {
+      needsCapo: false,
+      tipText: "Tom natural aberto (o mais fácil para violão iniciante — sem pestanas: G, C, D, Em).",
+      shape: null,
+      fret: 0,
+      transposeDiff: 0
+    },
+    "C": {
+      needsCapo: false,
+      tipText: "Tom natural aberto (C, G, Am). Novato com dificuldade na pestana de Fá? Use Capo na 5ª casa em [G].",
+      shape: "G",
+      fret: 5,
+      transposeDiff: -5
+    },
+    "D": {
+      needsCapo: false,
+      tipText: "Tom natural aberto (acordes fáceis D, G, A. Bm na 2ª casa).",
+      shape: null,
+      fret: 0,
+      transposeDiff: 0
+    },
+    "E": {
+      needsCapo: false,
+      tipText: "Tom natural aberto (acordes simples sem pestana: E, A, B7, Em).",
+      shape: null,
+      fret: 0,
+      transposeDiff: 0
+    },
+    "A": {
+      needsCapo: false,
+      tipText: "Tom natural aberto (A, D, E). Dica: Para eliminar pestana de F#m, use Capo na 2ª casa com forma de [G].",
+      shape: "G",
+      fret: 2,
+      transposeDiff: -2
+    },
+    "F": {
+      needsCapo: true,
+      tipText: "💡 Capo na 3ª casa com forma de [D] (ou Capo na 1ª casa em [E]) — elimina as pestanas de Fá!",
+      shape: "D",
+      fret: 3,
+      transposeDiff: -3
+    },
+    "F#": {
+      needsCapo: true,
+      tipText: "💡 Capo na 2ª casa com forma de [E] (ou Capo na 4ª casa em [D]) — toque sem pestanas!",
+      shape: "E",
+      fret: 2,
+      transposeDiff: -2
+    },
+    "Bb": {
+      needsCapo: true,
+      tipText: "💡 Capo na 3ª casa com forma de [G] — elimina todas as pestanas difíceis de Si Bemol!",
+      shape: "G",
+      fret: 3,
+      transposeDiff: -3
+    },
+    "Eb": {
+      needsCapo: true,
+      tipText: "💡 Capo na 1ª casa com forma de [D] (ou Capo na 3ª casa em [C]) — acordes fáceis e abertos!",
+      shape: "D",
+      fret: 1,
+      transposeDiff: -1
+    },
+    "Ab": {
+      needsCapo: true,
+      tipText: "💡 Capo na 1ª casa com forma de [G] — toque sem nenhuma pestana!",
+      shape: "G",
+      fret: 1,
+      transposeDiff: -1
+    },
+    "B": {
+      needsCapo: true,
+      tipText: "💡 Capo na 4ª casa com forma de [G] (ou Capo na 2ª casa em [A]) — toque com acordes abertos!",
+      shape: "G",
+      fret: 4,
+      transposeDiff: -4
+    },
+    "C#": {
+      needsCapo: true,
+      tipText: "💡 Capo na 1ª casa com forma de [C] — toque com acordes abertos fáceis!",
+      shape: "C",
+      fret: 1,
+      transposeDiff: -1
     }
-  }
-  return `Sem necessidade de Capotraste (toque natural em ${targetTone}).`;
+  };
+
+  return RECOMMENDATIONS[norm] || {
+    needsCapo: false,
+    tipText: `Toque natural em ${targetTone}.`,
+    shape: null,
+    fret: 0,
+    transposeDiff: 0
+  };
+}
+
+export function getCapoTips(targetTone) {
+  const rec = getCapoRecommendation(targetTone);
+  return rec.tipText;
 }
 
 // Calcula a diferença em semitons entre o tom base e o tom desejado

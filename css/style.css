@@ -1716,6 +1716,152 @@ body.focus-mode-active .floating-exit-focus-btn {
   color: #fff;
 }
 
+/* Card e Botões de Recomendação de Capotraste para Novatos */
+.capo-recommendation-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 10px;
+  padding: 0.6rem 0.9rem;
+  margin-top: 0.6rem;
+}
+
+.capo-tip-text {
+  font-size: 0.82rem;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.capo-buttons-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.apply-capo-btn {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #000;
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.apply-capo-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+.capo-help-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  font-size: 0.76rem;
+  padding: 0.35rem 0.65rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.capo-help-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.capo-active-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid var(--gold-primary);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  margin: 0.85rem 0;
+  color: #fef08a;
+  font-size: 0.88rem;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.15);
+}
+
+.btn-reset-capo {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-reset-capo:hover {
+  background: rgba(239, 68, 68, 0.35);
+  color: #fff;
+}
+
+/* Guia Didático de Acordes para Novatos no Modal */
+.chord-beginner-guide {
+  margin-top: 0.85rem;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 0.75rem;
+  font-size: 0.8rem;
+  text-align: left;
+}
+
+.chord-legend-row {
+  margin-bottom: 0.4rem;
+  color: #94a3b8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.chord-legend-row strong {
+  color: #cbd5e1;
+}
+
+.chord-tip-pestana {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 6px;
+  background: rgba(245, 158, 11, 0.12);
+  border-left: 3px solid #f59e0b;
+  color: #fef08a;
+  line-height: 1.45;
+  font-size: 0.78rem;
+}
+
+.chord-tip-open {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 6px;
+  background: rgba(16, 185, 129, 0.12);
+  border-left: 3px solid #10b981;
+  color: #6ee7b7;
+  line-height: 1.45;
+  font-size: 0.78rem;
+}
+
 /* ==========================================================================
    Footer
    ========================================================================== */

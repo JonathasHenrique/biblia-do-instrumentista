@@ -8,7 +8,7 @@ import { harpaHymns } from '../data/harpaData.js';
 import { bibleBooks as defaultBooks, acfTexts, devocionaisInstrumentista } from '../data/bibliaData.js';
 import { transposeText, transposeChord, isChordLine } from './transposer.js';
 import { GUITAR_CHORDS, BASS_ARPEGGIOS, renderGuitarChordSVG } from './chords.js';
-import { ALL_TONES, getHarmonicField, calculateSemitones } from './toneSelector.js';
+import { ALL_TONES, getHarmonicField, calculateSemitones, getCapoRecommendation } from './toneSelector.js';
 import { HYMN_CATALOG } from '../data/hymnCatalog.js';
 
 class App {
@@ -21,6 +21,7 @@ class App {
     this.hymnsList = [...harpaHymns];
     this.selectedHymn = harpaHymns[0];
     this.hymnTranspose = 0;
+    this.activeCapo = null;
     const urlParams = new URLSearchParams(window.location.search);
     const themeParam = urlParams.get('theme');
     const chordsParam = urlParams.get('chords');
@@ -40,6 +41,7 @@ class App {
     this.initNavigation();
     this.initChordsModal();
     this.initDonateModal();
+    this.initCapoModal();
 
     if (urlParams.get('modal') === 'chords') {
       this.showChordModal(urlParams.get('chord') || 'D');
@@ -430,18 +432,21 @@ class App {
     // Ajuste Fino (+1 / -1 Semitom)
     if (btnTransposeUp) {
       btnTransposeUp.addEventListener('click', () => {
+        this.activeCapo = null;
         this.hymnTranspose += 1;
         this.renderHymnContent();
       });
     }
     if (btnTransposeDown) {
       btnTransposeDown.addEventListener('click', () => {
+        this.activeCapo = null;
         this.hymnTranspose -= 1;
         this.renderHymnContent();
       });
     }
     if (btnTransposeReset) {
       btnTransposeReset.addEventListener('click', () => {
+        this.activeCapo = null;
         this.hymnTranspose = 0;
         this.renderHymnContent();
       });
@@ -516,6 +521,7 @@ class App {
 
       btn.addEventListener('click', () => {
         const baseTone = this.selectedHymn ? (this.selectedHymn.tone || 'C') : 'C';
+        this.activeCapo = null;
         this.hymnTranspose = calculateSemitones(baseTone, tone.name);
         this.renderHymnContent();
       });
@@ -628,6 +634,7 @@ class App {
       item.addEventListener('click', () => {
         this.selectedHymn = h;
         this.hymnTranspose = 0;
+        this.activeCapo = null;
         document.querySelectorAll('.hymn-item').forEach(i => i.classList.remove('active'));
         item.classList.add('active');
         if (this.closeHymnSidebar) this.closeHymnSidebar();
@@ -655,9 +662,13 @@ class App {
     const effectiveTone = transposeChord(baseTone, this.hymnTranspose);
 
     // Atualizar badge do tom
-    const toneDiff = this.hymnTranspose;
-    const tonePrefix = toneDiff > 0 ? `+${toneDiff}` : toneDiff < 0 ? `${toneDiff}` : '';
-    toneBadge.textContent = `Tom: ${effectiveTone} ${tonePrefix ? `(${tonePrefix})` : '(Orig)'}`;
+    if (this.activeCapo) {
+      toneBadge.innerHTML = `Capo ${this.activeCapo.fret}ª casa <small style="opacity:0.85;">(Forma [${this.activeCapo.shape}] • Som: ${this.activeCapo.originalTone})</small>`;
+    } else {
+      const toneDiff = this.hymnTranspose;
+      const tonePrefix = toneDiff > 0 ? `+${toneDiff}` : toneDiff < 0 ? `${toneDiff}` : '';
+      toneBadge.textContent = `Tom: ${effectiveTone} ${tonePrefix ? `(${tonePrefix})` : '(Orig)'}`;
+    }
 
     // Atualizar botões de tom ativos
     document.querySelectorAll('.tone-btn').forEach(btn => {
@@ -670,6 +681,38 @@ class App {
 
     // Exibir Campo Harmônico do Tom Atual & Dicas
     const hf = getHarmonicField(effectiveTone);
+    const capoRec = hf.capoRec || getCapoRecommendation(effectiveTone);
+
+    let capoHtml = '';
+    if (this.activeCapo) {
+      capoHtml = `
+        <div class="capo-recommendation-bar" style="border-color: var(--gold-primary);">
+          <div class="capo-tip-text" style="color: #fef08a;">
+            🎸 <strong>Capo na ${this.activeCapo.fret}ª casa ativo:</strong> Você toca formas fáceis de [${this.activeCapo.shape}]. Som real afinado em [${this.activeCapo.originalTone}].
+          </div>
+          <div class="capo-buttons-group">
+            <button class="btn-reset-capo" id="btn-reset-capo-hf">✕ Desativar Capo</button>
+            <button class="capo-help-btn" id="btn-open-capo-modal">❓ O que é Capo?</button>
+          </div>
+        </div>
+      `;
+    } else {
+      const applyBtnHtml = (capoRec.shape && capoRec.needsCapo)
+        ? `<button class="apply-capo-btn" id="btn-apply-capo">🎸 Tocar com Capo na ${capoRec.fret}ª casa (Forma [${capoRec.shape}])</button>`
+        : '';
+      capoHtml = `
+        <div class="capo-recommendation-bar">
+          <div class="capo-tip-text">
+            ${capoRec.needsCapo ? '💡' : '🟢'} ${capoRec.tipText}
+          </div>
+          <div class="capo-buttons-group">
+            ${applyBtnHtml}
+            <button class="capo-help-btn" id="btn-open-capo-modal">❓ O que é Capo?</button>
+          </div>
+        </div>
+      `;
+    }
+
     harmonicFieldEl.innerHTML = `
       <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; align-items:center;">
         <div>
@@ -681,11 +724,41 @@ class App {
           V: <span style="color:#fff;font-weight:700;">${hf.V7}</span> | 
           vi: <span style="color:#fbbf24;">${hf.vi} (Relativa)</span>
         </div>
-        <div style="color:#38bdf8; font-size:0.75rem;">
-          💡 Capo: ${hf.capoTips}
-        </div>
       </div>
+      ${capoHtml}
     `;
+
+    // Vincular botões do Capo
+    const btnApplyCapo = document.getElementById('btn-apply-capo');
+    if (btnApplyCapo && capoRec.shape) {
+      btnApplyCapo.onclick = () => {
+        this.activeCapo = {
+          fret: capoRec.fret,
+          shape: capoRec.shape,
+          originalTone: effectiveTone,
+          transposeDiff: capoRec.transposeDiff
+        };
+        this.hymnTranspose += capoRec.transposeDiff;
+        this.renderHymnContent();
+      };
+    }
+
+    const btnResetHf = document.getElementById('btn-reset-capo-hf');
+    if (btnResetHf && this.activeCapo) {
+      btnResetHf.onclick = () => {
+        this.hymnTranspose -= this.activeCapo.transposeDiff;
+        this.activeCapo = null;
+        this.renderHymnContent();
+      };
+    }
+
+    const btnOpenCapoModal = document.getElementById('btn-open-capo-modal');
+    if (btnOpenCapoModal) {
+      btnOpenCapoModal.onclick = () => {
+        const modal = document.getElementById('capo-modal');
+        if (modal) modal.style.display = 'flex';
+      };
+    }
 
     // Processamento linha a linha à prova de falhas:
     // Separa rigorosamente linhas de acordes de linhas de letra cantada.
@@ -767,16 +840,46 @@ class App {
       introTopBanner = `<div class="intro-banner">🎵 <strong>INTRODUÇÃO:</strong> ${transposedCatalogIntro}</div>`;
     }
 
+    let activeCapoTopBanner = '';
+    if (this.activeCapo) {
+      activeCapoTopBanner = `
+        <div class="capo-active-banner">
+          <div>
+            🎸 <strong>CAPO ATIVADO NA ${this.activeCapo.fret}ª CASA:</strong> 
+            Você toca os acordes de <strong>[${this.activeCapo.shape}]</strong>. O som real sairá perfeitamente afinado em <strong>${this.activeCapo.originalTone}</strong> com a congregação!
+          </div>
+          <button id="btn-reset-capo-top" class="btn-reset-capo">✕ Desativar Capo (Voltar ao Tom Real)</button>
+        </div>
+      `;
+    }
+
+    const cleanAuthor = (this.selectedHymn.author || '')
+      .replace(/\s*\(?CPAD\)?/gi, '')
+      .trim();
+    const authorText = (cleanAuthor && !/harpa crist[aã]|hin[aá]rio/i.test(cleanAuthor))
+      ? `Autor: ${cleanAuthor}`
+      : `Hinário Tradicional`;
+
     lyricsBody.innerHTML = `
       <div class="chord-sheet-header">
         <h2>${this.selectedHymn.number}. ${this.selectedHymn.title}</h2>
-        <p>Ritmo: ${this.selectedHymn.rhythm || 'Padrão'} | Tom Original: ${this.selectedHymn.tone} | Arranjo: ${this.selectedHymn.author}</p>
+        <p>Ritmo: ${this.selectedHymn.rhythm || 'Padrão'} | Tom Original: ${this.selectedHymn.tone} | ${authorText}</p>
+        ${activeCapoTopBanner}
         ${introTopBanner}
       </div>
       <div class="hymn-sheet-body">
         ${htmlLines.join('')}
       </div>
     `;
+
+    const btnResetTop = document.getElementById('btn-reset-capo-top');
+    if (btnResetTop && this.activeCapo) {
+      btnResetTop.onclick = () => {
+        this.hymnTranspose -= this.activeCapo.transposeDiff;
+        this.activeCapo = null;
+        this.renderHymnContent();
+      };
+    }
 
     // Aplicar estado de visibilidade de cifras (Cifras Ligadas vs Só Letra)
     if (this.updateChordsVisibility) {
@@ -1109,9 +1212,32 @@ class App {
       });
 
       const svg = renderGuitarChordSVG(chordKey);
+      const chordData = GUITAR_CHORDS[chordKey];
+      const hasBar = chordData && chordData.bar;
+      const baseFretText = chordData && chordData.baseFret > 1 ? `${chordData.baseFret}ª casa` : '1ª casa';
+
+      const pestanaTipHtml = hasBar
+        ? `<div class="chord-tip-pestana">
+            ⚠️ <strong>Acorde com Pestana (${chordData.baseFret}ª casa):</strong> O dedo indicador (1) deita reto cobrindo as cordas. Apoie o polegar na metade de trás do braço do violão e gire o indicador ligeiramente de lado para a nota soar limpa sem dor na mão!
+          </div>`
+        : `<div class="chord-tip-open">
+            ✨ <strong>Acorde Aberto (Sem Pestana):</strong> Curvar bem as pontas dos dedos para não esbarrar nem abafar as cordas soltas (marcadas com 🟢 O).
+          </div>`;
+
       guitarContainer.innerHTML = `
-        <div style="font-size: 0.85rem; color: var(--gold-light); font-weight: 600; margin-bottom: 0.5rem;">🎸 Violão (${chordKey})</div>
+        <div style="font-size: 0.85rem; color: var(--gold-light); font-weight: 600; margin-bottom: 0.5rem;">🎸 Violão (${chordKey}${chordData && chordData.name ? ` - ${chordData.name}` : ''})</div>
         ${svg}
+        <div class="chord-beginner-guide">
+          <div class="chord-legend-row">
+            <span><strong>Dedos:</strong> 1=Indicador | 2=Médio | 3=Anelar | 4=Mínimo</span>
+          </div>
+          <div class="chord-legend-row">
+            <span><strong style="color:#10b981;">O</strong> = Corda Solta</span> | 
+            <span><strong style="color:#ef4444;">✕</strong> = Não Tocar</span> | 
+            <span>📍 Posição: <strong>${baseFretText}</strong></span>
+          </div>
+          ${pestanaTipHtml}
+        </div>
       `;
 
       const bassRoot = chordKey.replace(/m|7|M|sus/g, '');
@@ -1181,6 +1307,28 @@ class App {
       }
       if (closeFooterBtn) {
         closeFooterBtn.addEventListener('click', () => {
+          modal.style.display = 'none';
+        });
+      }
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+      });
+    }
+  }
+
+  initCapoModal() {
+    const modal = document.getElementById('capo-modal');
+    const closeBtn = document.getElementById('close-capo-modal');
+    const understoodBtn = document.getElementById('btn-understood-capo');
+
+    if (modal) {
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          modal.style.display = 'none';
+        });
+      }
+      if (understoodBtn) {
+        understoodBtn.addEventListener('click', () => {
           modal.style.display = 'none';
         });
       }

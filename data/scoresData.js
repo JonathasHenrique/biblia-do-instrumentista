@@ -1,7 +1,7 @@
 // ============================================================================
 // BÍBLIA DO INSTRUMENTISTA - PARTITURAS DA HARPA CRISTÃ
 // Clave de Sol (Violão / Melodia) & Clave de Fá (Contrabaixo)
-// Letras e Rítmica em Conformidade Estrita com a CPAD (Assembleia de Deus)
+// Letras e Rítmica em Conformidade com o Hinário Litúrgico Tradicional
 // ============================================================================
 
 export const HYMN_SCORES = {
@@ -224,7 +224,7 @@ export function buildScoreABC(hymnNumber, title, targetTone = "C", meter = "4/4"
   if (specific) {
     return `X: 1
 T: Hino ${hymnNumber} - ${specific.title}
-C: Harpa Cristã (Padrão Assembleia de Deus)
+C: Harpa Cristã Tradicional
 M: ${specific.meter}
 L: ${specific.unit}
 K: ${targetTone}
@@ -238,7 +238,7 @@ ${specific.abcBody}`;
   // Partitura base de acompanhamento para os demais hinos
   return `X: 1
 T: Hino ${hymnNumber} - ${title}
-C: Harpa Cristã (Padrão Assembleia de Deus)
+C: Harpa Cristã Tradicional
 M: ${meter}
 L: 1/4
 K: ${targetTone}

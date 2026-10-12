@@ -361,7 +361,7 @@ A ti, a santa unção.`
   {
     number: 15,
     title: "Conversão (Foi na Cruz)",
-    author: "Isaac Watts / Ralph E. Hudson (CPAD)",
+    author: "Isaac Watts / Ralph E. Hudson",
     tone: "E",
     rhythm: "Balada Solene (4/4)",
     intro: "E A E B7 E",
@@ -422,7 +422,7 @@ Pra salvar a um tão pobre pecador.`
   {
     number: 39,
     title: "Alvo Mais Que a Neve",
-    author: "Eden R. Latta / Henry S. Perkins (CPAD)",
+    author: "Eden R. Latta / Henry S. Perkins",
     tone: "D",
     rhythm: "Valsa (3/4)",
     intro: "D Bm A A7 D",
@@ -500,7 +500,7 @@ O Teu sangue nos torna, Senhor!`
   {
     number: 77,
     title: "Guarda o Contacto",
-    author: "C. S. N. (CPAD)",
+    author: "C. S. N.",
     tone: "G",
     rhythm: "Marcha Viva (4/4)",
     intro: "G C G D G",
@@ -561,7 +561,7 @@ Guarda o contacto e terás poder!`
   {
     number: 107,
     title: "Firme nas Promessas",
-    author: "Russell Kelso Carter (CPAD)",
+    author: "Russell Kelso Carter",
     tone: "G",
     rhythm: "Marcha Viva (4/4)",
     intro: "G C G D G",
@@ -618,7 +618,7 @@ Firme nas promessas de Jesus!`
   {
     number: 141,
     title: "Guia-me Sempre, Meu Senhor",
-    author: "Harpa Cristã (CPAD)",
+    author: "Hinário Clássico",
     tone: "C",
     rhythm: "Oração / Toada (4/4)",
     intro: "C F C G7 C",
@@ -679,7 +679,7 @@ Lá meu espírito reviveu.`
   {
     number: 186,
     title: "De Valor em Valor",
-    author: "P. L. M. (CPAD)",
+    author: "P. L. M.",
     tone: "D",
     rhythm: "Marcha Triunfal (4/4)",
     intro: "D A D G D A D",
@@ -740,7 +740,7 @@ Que no céu me dará o Senhor.`
   {
     number: 196,
     title: "Uma Flor Gloriosa",
-    author: "C. H. M. (CPAD)",
+    author: "C. H. M.",
     tone: "G",
     rhythm: "Canção (6/8)",
     intro: "G D G C G D G",
@@ -815,7 +815,7 @@ Para brilhar em outro lugar.`
   {
     number: 212,
     title: "Os Guerreiros Se Preparam",
-    author: "E. A. Hoffman (CPAD)",
+    author: "E. A. Hoffman",
     tone: "C",
     rhythm: "Marcha Triunfal (4/4)",
     intro: "C F C G C",
@@ -882,7 +882,7 @@ De quem furioso, as quer tragar!`
   {
     number: 291,
     title: "A Mensagem da Cruz",
-    author: "George Bennard (CPAD)",
+    author: "George Bennard",
     tone: "A",
     rhythm: "Valsa (3/4)",
     intro: "A D A E7 A",
@@ -959,7 +959,7 @@ Uma parte da glória hei de ter.`
   {
     number: 300,
     title: "Nossa Esperança",
-    author: "Harpa Cristã (CPAD)",
+    author: "Hinário Clássico",
     tone: "C",
     rhythm: "Hino Escatológico (4/4)",
     intro: "C F C G C",
@@ -1030,7 +1030,7 @@ Dai glória a Deus, Jesus em breve vem!`
   {
     number: 526,
     title: "Grandioso És Tu",
-    author: "Carl Boberg / João Soares da Fonseca (CPAD)",
+    author: "Carl Boberg / João Soares da Fonseca",
     tone: "A",
     rhythm: "Hino Majestoso (4/4)",
     intro: "A D A E7 A",
@@ -1101,7 +1101,7 @@ A tua santa face contemplar.`
   {
     number: 545,
     title: "Porque Ele Vive",
-    author: "William J. Gaither / Gloria Gaither (CPAD)",
+    author: "William J. Gaither / Gloria Gaither",
     tone: "G",
     rhythm: "Balada Congregacional (4/4)",
     intro: "G G7 C Cm G D7 G",
@@ -1142,7 +1142,7 @@ Irei à Glória, ao meu Jesus que vivo está!`
   {
     number: 7,
     title: "Cristo Cura Sim!",
-    author: "F. A. B. (CPAD)",
+    author: "F. A. B.",
     tone: "F",
     rhythm: "Marcha de Avivamento (4/4)",
     intro: "F Bb F Dm Gm C7 F",
@@ -1183,7 +1183,7 @@ Faz o crente renascer!`
   {
     number: 24,
     title: "Poder Pentecostal",
-    author: "Gunnar Vingren (CPAD)",
+    author: "Gunnar Vingren",
     tone: "G",
     rhythm: "Marcha Pentecostal (4/4)",
     intro: "G C G Em Am D7 G",
@@ -1224,7 +1224,7 @@ Reveste os servos de valor descendo lá do céu!`
   {
     number: 115,
     title: "Trabalhai e Orai",
-    author: "C. R. B. (CPAD)",
+    author: "C. R. B.",
     tone: "F",
     rhythm: "Marcha de Obreiros (4/4)",
     intro: "F Bb F Dm Gm C7 F",
@@ -1265,7 +1265,7 @@ No belo lar celestial!`
   {
     number: 515,
     title: "Se Cristo Comigo Vai",
-    author: "C. Austin Miles (CPAD)",
+    author: "C. Austin Miles",
     tone: "G",
     rhythm: "Marcha Missionária (4/4)",
     intro: "G C G Em C D7 G",
@@ -1306,7 +1306,7 @@ Vitória gloriosa ao fiel Ele dará!`
   {
     number: 577,
     title: "Em Fervente Oração",
-    author: "M. A. S. (CPAD)",
+    author: "M. A. S.",
     tone: "G",
     rhythm: "Hino de Oração (4/4)",
     intro: "G C G Em C D7 G",
